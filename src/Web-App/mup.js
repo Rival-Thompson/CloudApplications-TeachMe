@@ -7,7 +7,12 @@ module.exports = {
       // password:
       // or leave blank for mup authenticate from ssh-agent
     }
-  },
+  },  docker: {
+        image:'abernix/meteord:base',
+        args:[ //optional, lets you add / overwrite any parameter on the docker run command
+            "--link='mongodb://server:aws@ds041546.mlab.com:41546/tachme'",
+        ]
+    },
 
   meteor: {
     name: 'Web-App',

@@ -1,0 +1,75 @@
+:root {
+    --nav-bgDefault      : #6bb9ff;
+    --nav-bgHighlight    : #3b7fba;
+    --nav-colDefault     : #ecf0f1;
+    --nav-colHover       : #0923ba;
+}
+
+.navbar-default {
+    background-color: var(--nav-bgDefault);
+    border-color: var(--nav-bgHighlight);
+}
+
+.navbar-default .navbar-brand {
+    color: var(--nav-colDefault);
+}
+
+.navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: var(--nav-colHover);
+}
+
+.navbar-default .navbar-nav > li > a {
+    color: var(--nav-colDefault);
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: var(--nav-colHover);
+}
+
+.navbar-default .navbar-nav .active > a, .navbar-default .navbar-nav .active > a:hover, .navbar-default .navbar-nav .active > a:focus {
+    color: var(--nav-colHover);
+    background-color: var(--nav-bgHighlight);
+}
+
+.navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover, .navbar-default .navbar-nav .open > a:focus {
+    color: var(--nav-colHover);
+    background-color: var(--nav-bgHighlight);
+}
+
+.navbar-default .navbar-nav .open > a .caret, .navbar-default .navbar-nav .open > a:hover .caret, .navbar-default .navbar-nav .open > a:focus .caret {
+    border-top-color: var(--nav-colHover);
+    border-bottom-color: var(--nav-colHover);
+}
+
+.navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: var(--nav-colDefault);
+    border-bottom-color: var(--nav-colDefault);
+}
+
+.navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: var(--nav-colHover);
+    border-bottom-color: var(--nav-colHover);
+}
+
+.navbar-default .navbar-toggle {
+    border-color: var(--nav-bgHighlight);
+}
+
+.navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: var(--nav-bgHighlight);
+}
+
+.navbar-default .navbar-toggle .icon-bar {
+    background-color: var(--nav-colDefault);
+}
+
+@media (max-width: 767px) {
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: var(--nav-colDefault);
+    }
+
+    .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: var(--nav-colHover);
+        background-color: var(--nav-bgHighlight);
+    }
+}

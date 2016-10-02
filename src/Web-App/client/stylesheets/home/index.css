@@ -1,0 +1,71 @@
+.welcome {
+    width: 80%;
+    position: fixed; /* or absolute */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.welcome .banner{
+    color: #223355;
+    font-size: 9em;
+    font-weight: bolder;
+    align-items: center;
+    text-align: center;
+    /*margin-top: 8%;*/
+}
+
+.welcome .buttonContainer {
+    width: 100%;
+    margin-top: 5%;
+}
+
+.welcome .button {
+    /*float: left;*/
+    width: 30%;
+    min-width: 4.5em;
+    margin: 1% 35%;
+    text-align:center;
+    -moz-border-radius:4px;
+    -webkit-border-radius:4px;
+    border-radius:4px;
+    display:block;
+    cursor:pointer;
+    font-family:Arial;
+    font-size:4em;
+    font-weight:bold;
+    padding:1.5% 12px;
+    text-decoration:none;
+}
+
+.welcome .button:active {
+    position:relative;
+    top:1px;
+}
+
+.welcome .student{
+    -moz-box-shadow: 0px 10px 14px -7px #3e7327;
+    -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
+    box-shadow: 0px 10px 14px -7px #3e7327;
+    background-color:#77b55a;
+    border:1px solid #528538;
+    color:#ffffff;
+    text-shadow:0px 1px 0px #5b8a3c;
+}
+.welcome .student:hover {
+    background-color:#5acc21;
+}
+
+
+.welcome .teacher{
+    -moz-box-shadow: 0px 10px 14px -7px #2e3a73;
+    -webkit-box-shadow: 0px 10px 14px -7px #374482;
+    box-shadow: 0px 10px 14px -7px #3a5373;
+    background-color: #6475b5;
+    border:1px solid #476485;
+    color:#ffffff;
+    text-shadow:0px 1px 0px #555f8a;
+}
+.welcome .teacher:hover {
+    background-color: #4c42cc;
+}
+
