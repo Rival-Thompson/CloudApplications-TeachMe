@@ -13,3 +13,6 @@ Router.route("/",{
 Router.route("/teacher/login",{
     name : "homeTeacherLogin"
 });
+Router.route("/student/token",{
+    name : "homeStudentToken"
+});
