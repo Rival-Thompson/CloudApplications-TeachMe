@@ -60,7 +60,7 @@
 }
 
 .navbar-default .navbar-toggle .icon-bar {
-    background-color: var(--nav-colDefault);
+    background-color: var(--nav-bgDefault);
 }
 
 @media (max-width: 767px) {
