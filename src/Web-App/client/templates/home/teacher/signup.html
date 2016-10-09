@@ -1,37 +1,23 @@
 <template name="homeTeacherSignup">
-    <div class="row">
-        <div class="col-md-6 col-md-offset-3">
-            <form class="register-form">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        <h3>Registration</h3>
-                    </div>
-                    <div class="panel-body">
-                        <div class="form-group col-lg-12">
-                            <label>Email</label>
-                            <input type="email"  class="form-control" id="email" value="">
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label>Name</label>
-                            <input type="text" name="" class="form-control" id="firstname" value="">
-                        </div>
-
-                        <div class="form-group col-lg-6">
-                            <label>Last Name</label>
-                            <input type="text" name="" class="form-control" id="lastname" value="">
-                        </div>
-
-                        <div class="form-group col-lg-12">
-                            <label>Password</label>
-                            <input type="password" name="" class="form-control" id="password" value="">
-                        </div>
-                    </div>
-                    <div class="panel-footer">
-                        <button type="submit" class="btn btn-primary">Register</button>
-                    </div>
-                </div>
-            </form>
+    <!--{{>navSignin}}-->
+    <h1 class="banner">Teach Me</h1>
+    <h2 class="teacher">Teacher {{currentUser.profile.name}}</h2>
+        <div class="register-form">
+            <div class="info">
+                <input type="email" id="email" value="" placeholder="Email">
+                <br>
+                <input type="password" name="" id="password" value="" placeholder="Password">
+                <br>
+                <input type="password" name="" id="passwordRepeat" value="" placeholder="Repeat Password">
+                <br>
+                <input type="text" name="" id="firstName" value="" placeholder="First Name">
+                <br>
+                <input type="text" name="" id="lastName" value="" placeholder="Last Name">
+                <br>
+                <input type="text" name="" id="school" value="" placeholder="School Name">
+            </div>
+            <div class="buttonContainer buttons">
+                <button type="submit" class="btn btn-success">Register</button> <!--event handelen-->
+            </div>
         </div>
-    </div>
 </template>
