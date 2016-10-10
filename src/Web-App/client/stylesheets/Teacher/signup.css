@@ -1,4 +1,4 @@
-.banner {
+.teacherSignup .banner {
     color: #223355;
     font-size: 9em;
     font-weight: bolder;
@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.teacher {
+.teacherSignup .teacher {
     color: #3c4d89;
     font-size: 3em;
     font-weight: bolder;
@@ -14,13 +14,13 @@
     text-align: center;
 }
 
-.register-form {
+.teacherSignup .register-form {
     width: 60%;
     margin: 0 auto;
     text-align: center;
 }
 
-input {
+.teacherSignup input {
     width: 50%;
     max-width: 500px;
     text-align: center;
@@ -32,26 +32,26 @@ input {
     background-color: transparent;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.teacherSignup ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: black;
 }
-::-moz-placeholder { /* Firefox 19+ */
+.teacherSignup ::-moz-placeholder { /* Firefox 19+ */
     color: black;
 }
 
-.buttons {
+.teacherSignup .buttons {
     margin-top: 5%;
 }
 
-.buttons button, .buttons a {
+.teacherSignup .buttons button, .buttons a {
     width: 150px;
 }
 
-button, a {
+.teacherSignup button, a {
     margin-left: 1%;
 }
 
-.register-form .buttonContainer {
+.teacherSignup .register-form .buttonContainer {
     width: 100%;
     margin-top: 2%;
     text-align: center;

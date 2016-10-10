@@ -1,4 +1,4 @@
-.banner {
+.teacherLogin .banner {
     color: #223355;
     font-size: 9em;
     font-weight: bolder;
@@ -6,7 +6,7 @@
     text-align: center;
 }
 
-.teacher {
+.teacherLogin .teacher {
     color: #3c4d89;
     font-size: 3em;
     font-weight: bolder;
@@ -14,13 +14,13 @@
     text-align: center;
 }
 
-.login-form {
+.teacherLogin .login-form {
     width: 60%;
     margin: 0 auto;
     text-align: center;
 }
 
-input {
+.teacherLogin input {
     width: 50%;
     max-width: 500px;
     text-align: center;
@@ -32,26 +32,26 @@ input {
     background-color: transparent;
 }
 
-::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.teacherLogin ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
     color: black;
 }
-::-moz-placeholder { /* Firefox 19+ */
+.teacherLogin ::-moz-placeholder { /* Firefox 19+ */
     color: black;
 }
 
-.buttons {
+.teacherLogin .buttons {
     margin-top: 5%;
 }
 
-.buttons button, .buttons a {
+.teacherLogin .buttons button, .buttons a {
     width: 150px;
 }
 
-button, a {
+.teacherLogin button, a {
     margin-left: 1%;
 }
 
-.login-form .buttonContainer {
+.teacherLogin .login-form .buttonContainer {
     width: 100%;
     margin-top: 1%;
     text-align: center;
