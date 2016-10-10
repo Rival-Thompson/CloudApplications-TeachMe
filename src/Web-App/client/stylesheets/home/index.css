@@ -5,6 +5,7 @@
     left: 50%;
     transform: translate(-50%, -50%);
 }
+
 .welcome .banner{
     color: #223355;
     font-size: 9em;
@@ -55,7 +56,6 @@
     background-color:#5acc21;
 }
 
-
 .welcome .teacher{
     -moz-box-shadow: 0px 10px 14px -7px #2e3a73;
     -webkit-box-shadow: 0px 10px 14px -7px #374482;
@@ -65,6 +65,7 @@
     color:#ffffff;
     text-shadow:0px 1px 0px #555f8a;
 }
+
 .welcome .teacher:hover {
     background-color: #4c42cc;
 }

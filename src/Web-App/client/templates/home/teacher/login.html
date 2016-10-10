@@ -1,4 +1,22 @@
 <template name="homeTeacherLogin">
-    {{>navSignin}}
-    <h1>Teacher</h1>
+    <!--{{>navSignin}}-->
+    <h1 class="banner">Teach Me</h1>
+    <h2 class="teacher">Teacher {{currentUser.profile.name}}</h2>
+    <div class="login-form">
+        <div class="info">
+            <input type="email" id="email" placeholder="Email address" value="">
+            <br>
+            <input type="password" name="" id="password" placeholder="password" value="">
+        </div>
+        <div class="buttons">
+            <div class="buttonContainer">
+                <button class="btn btn-success" type="submit">Login</button> <!--event handelen-->
+                <a class="btn btn-warning" href="{{pathFor "homeTeacherSignup"}}">Register</a>
+            </div>
+            <div class="buttonContainer">
+                <button class="btn btn-primary btn-facebook">Facebook Login</button>
+                <button class="btn btn-danger btn-google">Google Login</button>
+            </div>
+        </div>
+    </div>
 </template>
