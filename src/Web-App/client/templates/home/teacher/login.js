@@ -7,7 +7,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithPassword(email,password,function(err){
             if(!err) {
                 alert("login successful!");
-                //Router.go('/');
+                Router.go({pathFor: "homeTeacherDashboard"});
             }
             else {
                 console.log(err.message);

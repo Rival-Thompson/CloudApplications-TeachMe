@@ -1,0 +1,15 @@
+.teacherCreateLesson {
+    margin: 5%;
+}
+
+.teacherCreateLesson .lesson-form .lesson .newLesson  input {
+    width: 70%;
+}
+
+.teacherCreateLesson .lesson-form .lesson .newLesson  label {
+    width: 20%;
+}
+
+.teacherCreateLesson .lesson-form .lesson .newLesson .anonymity {
+    width: 100%;
+}
