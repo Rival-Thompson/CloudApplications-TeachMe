@@ -1,13 +1,14 @@
 <template name="homeTeacherLogin">
 <div class="teacherLogin">
     <!--{{>navSignin}}-->
+    {{>loginButtons}}
     <h1 class="banner">Teach Me</h1>
     <h2 class="teacher">Teacher {{currentUser.profile.name}}</h2>
-    <div class="login-form">
+    <form class="login-form">
         <div class="info">
-            <input type="email" id="email" placeholder="Email address" value="">
+            <input type="email" name="email" id="email" placeholder="Email address" value="">
             <br>
-            <input type="password" name="" id="password" placeholder="password" value="">
+            <input type="password" name="password" id="password" placeholder="password" value="">
         </div>
         <div class="buttons">
             <div class="buttonContainer">
@@ -19,6 +20,6 @@
                 <button class="btn btn-danger btn-google">Google Login</button>
             </div>
         </div>
-    </div>
+    </form>
 </div>
 </template>

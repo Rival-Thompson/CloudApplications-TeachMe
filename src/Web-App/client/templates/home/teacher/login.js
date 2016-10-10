@@ -9,6 +9,9 @@ Template.homeTeacherLogin.events({
                 alert("login successful!");
                 //Router.go('/');
             }
+            else {
+                console.log(err.message);
+            }
         });
     },
 
