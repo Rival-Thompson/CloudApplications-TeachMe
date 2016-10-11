@@ -4,18 +4,17 @@
             <div class="newLesson">
                 <div class="headerLesson">
                     <h2>New Lesson</h2>
-                    <button class="btn btn-success createNewLesson">Create lesson</button>
+                    <button id="HTCL_btn_CreateLesson" class="btn btn-success createNewLesson">Create lesson</button>
                 </div>
-                <div class="name">
-                    <label>Lesson Name:</label>
-                    <input type="text" name="lessonName" id="lessonName">
-                </div>
+                <div class="nameAndSubject">
+                    <label for="lessonName">Lesson Name:</label>
+                    <input type="text" name="lessonName" autocomplete="off" id="HTCL_input_LessonName">
 
-                <div class="subject">
-                    <label>Lesson Subject:</label>
-                    <input type="text" name="lessonSubject" id="lessonSubject">
+                    <label for="lessonSubject">Lesson Subject:</label>
+                    <input type="text" name="lessonSubject" autocomplete="off" id="HTCL_input_LessonSubject">
+
+                    <label class="checkbox-inline anonymity"><input type="checkbox" name="anonymity" value="yes">Student anonymity</label>
                 </div>
-                <label class="checkbox-inline anonymity"><input type="checkbox" name="anonymity" value="yes"> Student anonymity</label>
             </div>
         </form>
     </div>
