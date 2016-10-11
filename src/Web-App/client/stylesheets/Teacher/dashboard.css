@@ -1,3 +1,5 @@
-.homeTeacherCreateLesson div {
-    /*float: right;*/
+.TeacherCreateLesson {
+    width: 40%;
+    margin: 2%;
+    float: right;
 }

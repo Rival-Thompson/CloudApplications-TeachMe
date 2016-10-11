@@ -1,15 +1,44 @@
-.teacherCreateLesson {
-    margin: 5%;
+.teacherCreateLesson .lesson-form .newLesson  input {
+    width: 76%;
+    float: right;
+
+    display: inline-block;
 }
 
-.teacherCreateLesson .lesson-form .lesson .newLesson  input {
-    width: 70%;
+.teacherCreateLesson .lesson-form .newLesson div{
+    display: block;
 }
 
-.teacherCreateLesson .lesson-form .lesson .newLesson  label {
+.teacherCreateLesson .lesson-form .newLesson  label {
     width: 20%;
 }
 
-.teacherCreateLesson .lesson-form .lesson .newLesson .anonymity {
+.teacherCreateLesson .lesson-form .newLesson .anonymity input {
+    width: 5%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .anonymity {
+    width: 90%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson h2 {
+    display: block;
+    float: left;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson .createNewLesson {
+    display: block;
+    float: right;
+    margin-top: 20px;
+    margin-right: 10%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson {
+    display: inline-block;
     width: 100%;
+}
+
+.teacherCreateLesson {
+    background-color: rgba(255,255,255, 0.3);
+    padding: 0 5%;
 }

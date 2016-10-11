@@ -1,20 +1,21 @@
 <template name="homeTeacherCreateLesson">
     <div class="teacherCreateLesson">
         <form class="lesson-form">
-            <div class="lesson">
-                <div class="newLesson">
-                    <h1>New Lesson</h1>
-                    <div class="name">
-                        <label>Lesson Name:</label>
-                        <input type="text" name="lessonName" id="lessonName">
-                    </div>
-
-                    <div class="subject">
-                        <label>Lesson Subject:</label>
-                        <input type="text" name="lessonSubject" id="lessonSubject">
-                    </div>
-                    <label class="anonymity"><input type="checkbox" name="anonymity" value="yes"> Student anonymity</label>
+            <div class="newLesson">
+                <div class="headerLesson">
+                    <h2>New Lesson</h2>
+                    <button class="btn btn-success createNewLesson">Create lesson</button>
                 </div>
+                <div class="name">
+                    <label>Lesson Name:</label>
+                    <input type="text" name="lessonName" id="lessonName">
+                </div>
+
+                <div class="subject">
+                    <label>Lesson Subject:</label>
+                    <input type="text" name="lessonSubject" id="lessonSubject">
+                </div>
+                <label class="checkbox-inline anonymity"><input type="checkbox" name="anonymity" value="yes"> Student anonymity</label>
             </div>
         </form>
     </div>
