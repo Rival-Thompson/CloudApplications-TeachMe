@@ -8,7 +8,8 @@ Lessons.schema = new SimpleSchema({
     teacher:{type: String, label: "Teacher"},
     name: {type:String, label: "Lesson name"},
     subject: {type:String, label: "Lesson subject"},
-    token: {type:String},
+    token: {type:String,regEx: /^[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}$/},
+    anon:{type:Boolean},
     questions:{type:[Object], optional: true}
 });
 
