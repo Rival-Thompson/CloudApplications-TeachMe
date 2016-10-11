@@ -16,7 +16,7 @@ Template.homeTeacherSignup.events({
         Accounts.createUser(user, function (err) {
             if (!err) {
                 alert("sign up successful!");
-                //Router.go('/');
+                Router.go("homeTeacherLogin");
 
             }else{
                 console.log(err.message);

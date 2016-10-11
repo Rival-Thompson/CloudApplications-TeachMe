@@ -7,7 +7,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithPassword(email,password,function(err){
             if(!err) {
                 alert("login successful!");
-                Router.go({pathFor: "homeTeacherDashboard"});
+                Router.go("homeTeacherDashboard");
             }
             else {
                 console.log(err.message);
@@ -20,7 +20,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithFacebook(function(err){
             if(!err) {
                 alert("Facebook successful!");
-                //Router.go('/');
+                Router.go("homeTeacherDashboard");
             }
         });
     },
@@ -30,7 +30,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithGoogle(function(err){
             if(!err) {
                 alert("Google successful!");
-                //Router.go('/');
+                Router.go("homeTeacherDashboard");
             }
         });
     }
