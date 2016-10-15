@@ -16,6 +16,10 @@ Router.route("/teacher/login",{
 Router.route("/teacher/signup",{
     name : "homeTeacherSignup"
 });
+Router.route("/teacher/dashboard",{
+    name : "homeTeacherDashboard"
+});
+
 
 Router.route("/student/token",{
     name : "homeStudentToken"

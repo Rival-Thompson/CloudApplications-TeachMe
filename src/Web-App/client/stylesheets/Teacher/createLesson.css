@@ -1,0 +1,58 @@
+.teacherCreateLesson {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 5% 5%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson {
+    display: inline-block;
+    width: 100%;
+    border-bottom: solid;
+    padding-bottom: 5%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson h2 {
+    display: block;
+    float: left;
+    margin-top: 0;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .headerLesson .createNewLesson {
+    display: block;
+    float: right;
+}
+
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject input {
+    width: 77%;
+    /*float: right;*/
+}
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject div {
+    display: block;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject label {
+    width: 20%;
+    margin-left: 1%;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject .anonymity input {
+    width: 5%;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject .anonymity {
+    width: 100%;
+    margin-top: 2%;
+    margin-left: 0;
+    display: block;
+    padding-left: 0;
+    font-weight: bold;
+}
+
+.teacherCreateLesson .lesson-form .newLesson .nameAndSubject {
+    padding: 1% 0;
+    border-bottom: solid;
+}

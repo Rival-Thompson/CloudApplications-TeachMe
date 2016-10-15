@@ -11,12 +11,13 @@ Template.homeTeacherSignup.events({
         var lastname = event.target.lastName.value;
         var school = event.target.school.value;
 
-        var user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school}};
+        var user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school,teacher: true}};
 
         Accounts.createUser(user, function (err) {
             if (!err) {
                 alert("sign up successful!");
-                //Router.go('/');
+                Router.go("homeTeacherLogin")
+                
 
             }else{
                 console.log(err.message);
