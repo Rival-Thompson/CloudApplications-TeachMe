@@ -19,6 +19,10 @@ Router.route("/teacher/signup",{
 Router.route("/teacher/dashboard",{
     name : "homeTeacherDashboard"
 });
+Router.route("/teacher/lesson/:token",function () {
+   var thisLesson = Lessons.findOne({token: this.params.token});
+    this.render('homeTeacherHub',{data: thisLesson})
+});
 
 
 Router.route("/student/token",{

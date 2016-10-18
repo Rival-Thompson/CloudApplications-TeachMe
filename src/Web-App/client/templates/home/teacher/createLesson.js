@@ -58,6 +58,7 @@ _makeNewLesson = function (name,subject,anon = false ,token = null) {
             console.log(err.message);
         }else {
             console.log(res.toString());
+            Router.go("/teacher/lesson/"+les.token);
         }
 
     })
