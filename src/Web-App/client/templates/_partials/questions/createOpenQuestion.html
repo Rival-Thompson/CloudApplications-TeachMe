@@ -1,12 +1,12 @@
 <template name="partialCreateOpenQuestions">
     <div class="P-OpenQuestion">
-        <div style="width: 80%">
+        <div style="width: 100%">
             <p style="display: inline" > {{this.num}}: </p>
-            <input type="text" name="question" placeholder="question" value="{{this.question}}"  id="HTH_InputQuestion" style="display: inline; width: 80%">
-            <select class="form-control" id="HTH_SelectType" style="width: 15%; display: inline">
-                <option>Open</option>
-                <option>Multiplechoice</option>
-                <option>Code</option>
+            <input type="text" name="question" placeholder="question" value="{{this.question}}"  id="HTH_InputQuestion" style="display: inline; width: 70%">
+            <select class="form-control" id="HTH_SelectType" style="width: 15%; min-width: 8em; display: inline">
+                <option value="Open">Open</option>
+                <option value="MP">Multiplechoice</option>
+                <option value="Code">Code</option>
             </select>
         </div>
         <input type="button" value="save" id="HTH_SaveQuest">

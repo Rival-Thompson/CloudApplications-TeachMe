@@ -17,7 +17,7 @@ var temp = {
             question:"How is it going?"
             ,num:1
         },{
-            type:"Open",
+            type:"MultipleChoice",
             question:"How is it going?"
         ,num:2
         },{
@@ -52,6 +52,7 @@ Template.homeTeacherHub.events({
     'click #HTH_SaveQuest'(event,template){
        console.log(event);
         selected.question = template.find('#HTH_InputQuestion').value;
+        selected.type = template.find('#HTH_SelectType').value;
         selectedDep.changed();
     },
     'click .HTH_SelectQuest'(event){
