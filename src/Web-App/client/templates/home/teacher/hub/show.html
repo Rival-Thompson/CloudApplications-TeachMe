@@ -18,7 +18,9 @@
             </div>
             <div class="detail" style="width: 85%; padding: 1em ; float: left; background-color: var(--backgroudncolor-light); height: 80%;top: 5%; bottom: 5%">
                 {{#with selectedQuestion}}
-                    {{>partialCreateOpenQuestions}}
+                    {{#if zelfde selectedQuestion.type "Open"}}
+                        {{>partialCreateOpenQuestions}}
+                    {{/if}}
                 {{/with}}
             </div>
             <div style="clear: both; width: 100%"></div>
