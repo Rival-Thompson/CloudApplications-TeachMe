@@ -1,8 +1,10 @@
-var lesson = this.data;
+var lesson = null;
+
 
 Template.homeTeacherHub.events({
     "click #HTH_AddQuestion"(event){
         event.preventDefault();
+        //var lesson = Lessons.findOne({token: Router.current().params.token});
 
         console.log(Router.current().params.token);
         console.log(lesson);
@@ -12,6 +14,19 @@ Template.homeTeacherHub.events({
 Template.homeTeacherHub.helpers({
     thislesson: lesson
 });
+
+Template.homeTeacherHub.rendered = function () {
+    var token = Router.current().params.token;
+    console.log(token);
+    Meteor.call("sendLesson",token,(error,response)=>{
+        if(error){
+            console.log(error);
+        }else{
+            console.log("Response: " + JSON.stringify(response));
+            lesson = response;
+        }
+    });
+};
 
 /*
 Template.registerHelper('zelfde', (a, b)=> {
