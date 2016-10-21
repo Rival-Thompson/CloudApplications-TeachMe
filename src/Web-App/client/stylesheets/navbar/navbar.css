@@ -15,11 +15,6 @@
 .btn.btn-circle { border-radius: 50px; }
 .btn.btn-outline { background-color: transparent; }
 
-.navbar-nav.navbar-right .btn:not(.collapsed) {
-    background-color: rgb(111, 84, 153);
-    border-color: rgb(111, 84, 153);
-    color: rgb(255, 255, 255);
-}
 
 .navbar.navbar-default .nav-collapse,
 .navbar.navbar-inverse .nav-collapse {

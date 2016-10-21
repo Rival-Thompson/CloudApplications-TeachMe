@@ -1,22 +1,22 @@
 <template name="homeTeacherHub">
     <div class="teacherHub" style="height: 100%;">
         {{>navSignin}}
-        <div class="HTH_Questions centered"  style="height: 80%; width: 80%">
-            <div class="tabs" style="width: 15%; float: left" >
+        <div class="HTH_Questions centered"  style="max-height: 80%; width: 80%; overflow: auto">
+            <div id="HTH_tabs" class="tabs" style="width: 3em; float: left; margin-top: 1em" >
                 <ul class="nav nav-pills nav-stacked">
-                    {{#each question in thislesson.Questions}}
-                        <li class="{{#if zelfde question.num selectedQuestion.num}}selectedtab{{/if}}">
+                    {{#each question in thislesson.questions}}
+                        <li class="tab {{#if zelfde question.num selectedQuestion.num}}selectedtab{{/if}}">
                             <a class="HTH_SelectQuest">{{question.num}}</a>
                         </li>
                     {{/each}}
 
-                    <li id="HTH_AddQuestion">
+                    <li id="HTH_AddQuestion" class="tabPlus">
                         <a>+</a>
                     </li>
 
                 </ul>
             </div>
-            <div class="detail" style="width: 85%; padding: 1em ; float: left; background-color: var(--backgroudncolor-light); height: 80%;top: 5%; bottom: 5%">
+            <div class="detail" style="width: 85%;min-width: 80%; padding: 1em ; float: left; background-color: var(--backgroudncolor-light); bottom: 5%;border-radius: 1em; overflow-scrolling: auto; height: {{tabsHeigt}}; max-height: 80%">
                 {{#with selectedQuestion}}
                     {{#if zelfde selectedQuestion.type "Open"}}
                         {{>partialCreateOpenQuestions}}
