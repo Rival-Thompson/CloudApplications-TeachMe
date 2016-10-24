@@ -53,6 +53,18 @@ Template.homeTeacherHub.events({
     }
 });
 
+Template.HTH_optInp.events({
+    "click .HTH_OptionRemove"(event, template){
+        console.log(this.option);
+        let index = selected.options.indexOf(this.option);
+        console.log(index);
+        if (index > -1) {
+            selected.options.splice(index, 1);
+        }
+        selectedDep.changed();
+    }
+});
+
 Template.homeTeacherHub.helpers({
     thislesson: function () {
         lessonDep.depend();
