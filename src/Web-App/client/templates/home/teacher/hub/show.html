@@ -21,6 +21,9 @@
                     {{#if zelfde selectedQuestion.type "Open"}}
                         {{>partialCreateOpenQuestions}}
                     {{/if}}
+                    {{#if zelfde selectedQuestion.type "MP"}}
+                        {{>partialCreateMPQuestions}}
+                    {{/if}}
                 {{/with}}
             </div>
             <div style="clear: both; width: 100%"></div>
