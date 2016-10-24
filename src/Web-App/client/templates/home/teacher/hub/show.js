@@ -17,6 +17,14 @@ saveQuestions = function (template) {
     selected.question = template.find('#HTH_InputQuestion').value;
     selected.type = template.find('#HTH_SelectType').value;
     console.log(selected);
+    if (selected.type === "MP"){
+        selected.options.forEach(function (option, index) {
+            console.log(option);
+            id = '#HTH_OptionInput'+ option.num;
+            var optionText = template.find(id).value;
+            option.text = optionText;
+        });
+    }
     Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     console.log("questions saved");
 
@@ -50,6 +58,17 @@ Template.homeTeacherHub.events({
     },
     "click #HTH_SaveQuest"(event, template){
         saveQuestions(template);
+    },
+    "click #HTH_OptionAdd"(event, template){
+        console.log(selected.options);
+        selected.options.push({text: "New option", num: selected.options.length});
+        selectedDep.changed();
+
+        tabsHeight = $("#HTH_tabs").height() + 100 + "px";
+        console.log(tabsHeight + ": tabheight");
+        tabsHeightDep.changed();
+
+        Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     }
 });
 
