@@ -59,7 +59,7 @@ Template.homeTeacherHub.events({
     "click #HTH_SaveQuest"(event, template){
         saveQuestions(template);
     },
-    "click #HTH_OptionAdd"(event, template){
+    "click #HTH_OptionAdd"(event){
         console.log(selected.options);
         selected.options.push({text: "New option", num: selected.options.length});
         selectedDep.changed();
@@ -69,11 +69,57 @@ Template.homeTeacherHub.events({
         tabsHeightDep.changed();
 
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
+    },
+    "change #HTH_SelectType"(event){
+        var selectType = event.target.value;
+        console.log(selectType);
+
+        if (selectType === 'MP'){
+            console.log(selected);
+            selected.type = "MP";
+            if (selected.options === undefined){
+                selected.options = [];
+            }
+        }
+        if (selectType === 'Open'){
+            selected.type = "Open";
+            console.log(selected);
+
+            delete selected.options;
+            //selected.options = undefined;
+            console.log(selected.options);
+        }
+        selectedDep.changed();
+
+        tabsHeight = $("#HTH_tabs").height() + 100 + "px";
+        console.log(tabsHeight + ": tabheight");
+        tabsHeightDep.changed();
+    },
+    "click #HTH_DeleteQuest"(event){
+        console.log(this);
+        var index = lesson.questions.indexOf(this);
+        console.log("#" + index);
+
+        if (index > -1){
+            lesson.questions.splice(index, 1);
+        }
+
+        lesson.questions.forEach(function (question) {
+            console.log(question);
+            console.log(question.num);
+            if (question.num > (index + 1)){
+                question.num = question.num - 1;
+                console.log(question.num);
+            }
+        });
+        //Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
+        //Tracker.flush();
+        lessonDep.changed();
     }
 });
 
 Template.HTH_optInp.events({
-    "click .HTH_OptionRemove"(event, template){
+    "click .HTH_OptionRemove"(){
         console.log(this.option);
         let index = selected.options.indexOf(this.option);
         console.log(index);
