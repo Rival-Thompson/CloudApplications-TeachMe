@@ -26,11 +26,20 @@ saveQuestions = function (template) {
                 option.text = optionText;
             });
         }
+        if (selected.type === "Code"){
+            selected.QuestExample = template.find('#HTH_QuestExample').value;
+            console.log(selected.QuestExample);
+        }
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
         console.log("questions saved");
 
         selectedDep.changed();
     }
+};
+
+RemoveOptions = function (selected) {
+    delete selected.options;
+    console.log(selected.options);
 };
 
 Template.homeTeacherHub.events({
@@ -89,9 +98,13 @@ Template.homeTeacherHub.events({
             selected.type = "Open";
             console.log(selected);
 
-            delete selected.options;
-            //selected.options = undefined;
-            console.log(selected.options);
+            RemoveOptions(selected);
+        }
+        if (selectType === 'Code'){
+            selected.type = "Code";
+            console.log(selected);
+
+            RemoveOptions(selected);
         }
         selectedDep.changed();
 
