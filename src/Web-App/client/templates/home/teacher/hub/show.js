@@ -14,25 +14,27 @@ Template.registerHelper('not',(a)=>{
 });
 
 saveQuestions = function (template) {
-    selected.question = template.find('#HTH_InputQuestion').value;
-    selected.type = template.find('#HTH_SelectType').value;
-    console.log(selected);
-    if (selected.type === "MP"){
-        selected.options.forEach(function (option, index) {
-            console.log(option);
-            id = '#HTH_OptionInput'+ option.num;
-            var optionText = template.find(id).value;
-            option.text = optionText;
-        });
-    }
-    Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
-    console.log("questions saved");
+    if (selected) {
+        selected.question = template.find('#HTH_InputQuestion').value;
+        selected.type = template.find('#HTH_SelectType').value;
+        console.log(selected);
+        if (selected.type === "MP") {
+            selected.options.forEach(function (option, index) {
+                console.log(option);
+                id = '#HTH_OptionInput' + option.num;
+                var optionText = template.find(id).value;
+                option.text = optionText;
+            });
+        }
+        Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
+        console.log("questions saved");
 
-    selectedDep.changed();
+        selectedDep.changed();
+    }
 };
 
 Template.homeTeacherHub.events({
-    "click #HTH_AddQuestion"(){
+    "click #HTH_AddQuestion"(event){
         lesson.questions.push({type: "Open", question: "new question", num: lesson.questions.length + 1});
         lessonDep.changed();
         console.log("added question");
@@ -40,8 +42,10 @@ Template.homeTeacherHub.events({
         tabsHeight = $("#HTH_tabs").height() + 100 + "px";
         console.log(tabsHeight + ": tabheight");
         tabsHeightDep.changed();
-
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
+
+        selected = lesson.questions[lesson.questions.length - 1];
+        selectedDep.changed();
     },
     "click .HTH_SelectQuest"(event, template){
         saveQuestions(template);
@@ -112,9 +116,16 @@ Template.homeTeacherHub.events({
                 console.log(question.num);
             }
         });
-        //Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
-        //Tracker.flush();
+        selected = lesson.questions[0];
+        selectedDep.changed();
+        if (index > lesson.questions.length - 1){
+            selected = lesson.questions[index - 1];
+        } else {
+            selected = lesson.questions[index];
+        }
+        selectedDep.changed();
         lessonDep.changed();
+        Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     }
 });
 
