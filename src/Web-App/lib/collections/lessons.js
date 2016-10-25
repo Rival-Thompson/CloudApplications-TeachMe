@@ -2,7 +2,7 @@
  * Created by Rival on 11/10/2016.
  */
 
-Lessons= new Mongo.Collection("lessons");
+Lessons = new Mongo.Collection("lessons");
 
 Lessons.schema = new SimpleSchema({
     teacher:{type: String, label: "Teacher"},
