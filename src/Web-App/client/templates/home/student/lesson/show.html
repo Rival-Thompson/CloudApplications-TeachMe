@@ -1,3 +1,14 @@
 <template name="homeStudentLesson">
 
+    <div class="HSL">
+        {{#if not zelfde thisLesson.ActiveQuestion null}}
+
+
+        {{else}}
+
+            {{>HSL_NoQuestion}}
+        {{/if}}
+    </div>
+
+
 </template>

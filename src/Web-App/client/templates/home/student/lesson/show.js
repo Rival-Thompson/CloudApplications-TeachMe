@@ -3,6 +3,10 @@
  */
 Meteor.subscribe('user');
 
+Template.registerHelper('zelfde', (a, b)=> {
+    return a == b;
+});
+
 Template.homeStudentLesson.helpers({
 
 });
