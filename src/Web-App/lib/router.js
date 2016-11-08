@@ -26,3 +26,6 @@ Router.route("/teacher/lesson/:token", {
 Router.route("/student/token", {
     name: "homeStudentToken"
 });
+Router.route("/student/lesson/:token", {
+    name: "homeStudentLesson"
+});

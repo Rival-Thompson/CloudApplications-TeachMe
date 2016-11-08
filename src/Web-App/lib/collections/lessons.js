@@ -28,3 +28,4 @@ Lessons.allow({
         return isTeacher();
     }
 });
+

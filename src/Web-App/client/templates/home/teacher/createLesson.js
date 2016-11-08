@@ -1,6 +1,7 @@
 /**
  * Created by rival on 11/10/2016.
  */
+Meteor.subscribe('user');
 var LetterArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
 var NumberArray = ["1","2","3","4","5","6","7","8","9","0"];
 var tokenRegex = new RegExp("^[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}$","i");
@@ -83,3 +84,7 @@ Template.homeTeacherCreateLesson.events({
             template.find('#HTCL_cb_Anon').checked)
     }
 });
+
+Template.homeTeacherCreateLesson.rendered = function () {
+    Meteor.subscribe('lessons');
+};
