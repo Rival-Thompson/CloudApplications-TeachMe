@@ -1,0 +1,24 @@
+<template name="partialCreateCodeQuestions">
+    <div class="P-OpenQuestion">
+        <div class="form-group" style="width: 100%">
+            <p style="display: inline" > {{this.num}}: </p>
+            <input type="text" name="question" placeholder="question" value="{{this.question}}"  id="HTH_InputQuestion" style="display: inline; width: 70%">
+            <select class="form-control" id="HTH_SelectType" style="width: 15%; min-width: 8em; display: inline">
+                <option value="Open" >Open</option>
+                <option value="MP" >Multiplechoice</option>
+                <option value="Code" selected>Code</option>
+            </select>
+        </div>
+        <div style="height: 2px; width: 100%; background-color: #223355; margin-bottom: 1em"></div>
+        <div>
+                <textarea id="HTH_QuestExample" class="form-control"  type="text" aria-multiline="true" style="width: 100%; max-width: 100%;  overflow: visible; min-height: 5em">{{this.QuestExample}}</textarea>
+
+        </div>
+
+        <div style="height: 2px; width: 100%; background-color: #223355; margin-top: 1em ;margin-bottom: 1em"></div>
+        <input class="btn btn-primary" type="button" value="save" id="HTH_SaveQuest">
+        <input class="btn btn-success" type="button" value="ask" id="HTH_AskQuest">
+        <input class="btn btn-danger" type="button" value="delete" id="HTH_DeleteQuest">
+    </div>
+
+</template>

@@ -2,7 +2,7 @@
  * Created by Rival on 11/10/2016.
  */
 
-Lessons= new Mongo.Collection("lessons");
+Lessons = new Mongo.Collection("lessons");
 
 Lessons.schema = new SimpleSchema({
     teacher:{type: String, label: "Teacher"},
@@ -14,12 +14,11 @@ Lessons.schema = new SimpleSchema({
 });
 
 Lessons.allow({
-     update : function (userid,lesson) {
-
-         return isTeacher();
-     },
+    update : function (userid,lesson) {
+        return isTeacher();
+    },
     insert : function (userid,lesson) {
-         Lessons.schema.validate(lesson);
+        Lessons.schema.validate(lesson);
         if (isTeacher()){
             return true;
         }
@@ -28,11 +27,5 @@ Lessons.allow({
     remove : function () {
         return isTeacher();
     }
-
 });
 
-if(Meteor.isServer){
-    Meteor.methods({
-
-    })
-}

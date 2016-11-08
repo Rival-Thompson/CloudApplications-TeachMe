@@ -447,3 +447,4 @@ __pycache__/
 
 ### VisualStudio Patch ###
 build/
+src/Web-App/client/templates/home/teacher/hub/show-Rival.js

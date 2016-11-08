@@ -1,0 +1,40 @@
+<template name="partialCreateMPQuestions">
+    <div class="P-OpenQuestion">
+        <div class="form-group" style="width: 100%">
+            <p style="display: inline" > {{this.num}}: </p>
+            <input type="text" name="question" placeholder="question" value="{{this.question}}"  id="HTH_InputQuestion" style="display: inline; width: 70%">
+            <select class="form-control" id="HTH_SelectType" style="width: 15%; min-width: 8em; display: inline">
+                <option value="Open">Open</option>
+                <option value="MP" selected>Multiplechoice</option>
+                <option value="Code">Code</option>
+            </select>
+        </div>
+        <div style="height: 2px; width: 100%; background-color: #223355; margin-bottom: 1em"></div>
+        <div>
+            <ul>
+                    {{#each option in this.options}}
+                        {{>HTH_optInp num=option.num option=option}}
+                    {{/each}}
+                <button id="HTH_OptionAdd" class="button btn btn-default">Add</button>
+            </ul>
+        </div>
+
+        <div style="height: 2px; width: 100%; background-color: #223355; margin-bottom: 1em"></div>
+
+        <input class="btn btn-primary" type="button" value="save" id="HTH_SaveQuest">
+        <input class="btn btn-success" type="button" value="ask" id="HTH_AskQuest">
+        <input class="btn btn-danger" type="button" value="delete" id="HTH_DeleteQuest">
+
+
+    </div>
+
+</template>
+
+<template name="HTH_optInp">
+  <div class="input-group">
+<input type="text" class="form-control" value="{{option.text}}" id="HTH_OptionInput{{option.num}}">
+<span class="input-group-btn">
+                        <button class="btn btn-danger HTH_OptionRemove" data="{{option.num}}" type="button">X</button>
+                        </span>
+</div>
+</template>
