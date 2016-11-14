@@ -26,3 +26,7 @@ Router.route("/teacher/lesson/:token", {
 Router.route("/student/token", {
     name: "homeStudentToken"
 });
+
+Router.route("/teacher/lesson/:token/:activeNum", {
+    name: "homeTeacherHubActiveQuestion"
+});
