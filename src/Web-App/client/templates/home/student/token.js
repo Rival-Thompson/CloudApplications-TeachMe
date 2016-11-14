@@ -1,12 +1,14 @@
 /**
  * Created by rival on 4/10/2016.
  */
+Meteor.subscribe('user');
 Template.homeStudentToken.events({
-    'submit .studentTokenForm': function (event) {
+    'click .buttonJoin': function (event,template) {
         event.preventDefault();
         console.log(event);
-        var token = event.target.studentInputToken.value;
+        var token = template.find('#HS_token').value;
 
         console.log("Token: " + token.toString());
+        Router.go('homeStudentLesson',{token:token});
     }
 });

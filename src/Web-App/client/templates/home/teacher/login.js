@@ -1,3 +1,4 @@
+Meteor.subscribe('user');
 Template.homeTeacherLogin.events({
     'submit .login-form': function (event) {
         event.preventDefault();
@@ -7,6 +8,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithPassword(email,password,function(err){
             if(!err) {
                 alert("login successful!");
+                Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
             }
             else {
@@ -20,6 +22,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithFacebook(function(err){
             if(!err) {
                 alert("Facebook successful!");
+                Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
             }
         });
@@ -30,6 +33,7 @@ Template.homeTeacherLogin.events({
         Meteor.loginWithGoogle(function(err){
             if(!err) {
                 alert("Google successful!");
+                Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
             }
         });

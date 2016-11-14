@@ -1,3 +1,7 @@
+
+Meteor.subscribe('user');
+
+
 var lesson = null;
 var lessonDep = new Tracker.Dependency;
 var selected = null;
@@ -170,6 +174,7 @@ Template.homeTeacherHub.helpers({
 });
 
 Template.homeTeacherHub.rendered = function () {
+    Meteor.subscribe('lessons');
     var token = Router.current().params.token;
     //console.log(token);
     Meteor.call("sendLesson", token, (error, response)=> {

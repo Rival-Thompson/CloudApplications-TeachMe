@@ -1,3 +1,4 @@
+Meteor.subscribe('user');
 Template.homeTeacherSignup.events({
     'submit .register-form': function (event) {
         console.log("create user");
