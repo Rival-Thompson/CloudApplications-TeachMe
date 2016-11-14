@@ -26,3 +26,5 @@ accounts-ui@1.1.9
 accounts-facebook@1.0.10
 accounts-google@1.0.10
 aldeed:simple-schema
+d3js:d3
+emdagon:c3js

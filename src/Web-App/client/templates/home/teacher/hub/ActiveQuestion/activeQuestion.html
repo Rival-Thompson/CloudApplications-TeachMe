@@ -1,0 +1,12 @@
+<template name="homeTeacherHubActiveQuestion">
+    <div class="teacherHubActiveQuestion" style="height: 100%;">
+        {{>navSignin}}
+        <div class="HTH_ActiveQuestion centered" style="max-height: 80%; width: 80%; overflow: auto">
+            <p>{{thisActiveQuestion.question}}</p>
+            {{#each answer in thisActiveQuestion.answers}}
+                <p>{{answer.antw}}</p>
+            {{/each}}
+        </div>
+        <div id="chart"></div>
+    </div>
+</template>
