@@ -103,3 +103,18 @@ font-size: 4em;
 .HSL .answerForm input[type=radio]:checked ~ label{
     color: var(--collor-customselect);
 }
+
+.HSL .HSL-Open-Input{
+    width: 80%;
+    font-size: 2.2em;
+    font-weight: bold;
+    background-color: rgba(255,255,255,0.2);
+    border: none;
+    min-height: 10vh;
+    max-height: 50vh;
+}
+
+.HSL .HSL-Open-Input:focus{
+    background-color: rgba(255,255,255,0.3);
+    outline: none;
+}

@@ -25,32 +25,60 @@ Template.homeStudentLesson.helpers({
 });
 
 Template.homeStudentLesson.events({
-        "click #HSL_SaveMPAnswer"(event,template){
-            console.log("Saving answers");
+    "click #HSL_SaveMPAnswer"(event,template){
+        console.log("Saving answers");
 
-            let antwoord, beoordeling;
-            let rating = template.find("input[name$='rating']:checked");
-            if(!!rating){
-                console.log(rating.value);
-                beoordeling = rating.value;
-            }else{
-                console.log(0);
-                beoordeling = 0
-            }
+        let antwoord, beoordeling;
+        let rating = template.find("input[name$='rating']:checked");
+        if(!!rating){
+            console.log(rating.value);
+            beoordeling = rating.value;
+        }else{
+            console.log(0);
+            beoordeling = 0
+        }
 
-            let question = template.find("input[name$='mp']:checked");
-            if(!!question){
-                console.log(question.value);
-                antwoord = question.value;
-            }else{
-                console.log("NONE");
-                antwoord = "None given"
-            }
+        let question = template.find("input[name$='mp']:checked");
+        if(!!question){
+            console.log(question.value);
+            antwoord = question.value;
+        }else{
+            console.log("NONE");
+            antwoord = "None given"
+        }
 
+        let thislesson =Lessons.findOne();
+        let answ = {antw: antwoord,rating: beoordeling};
+        saveAnswer(answ,thislesson._id,thislesson.activequestion);
+    }
+    ,"click #HSL_SaveOpenAnswer"(event,template){
+        console.log("Saving answers");
+
+        let antwoord, beoordeling;
+        let rating = template.find("input[name$='rating']:checked");
+        if(!!rating){
+            console.log(rating.value);
+            beoordeling = rating.value;
+        }else{
+            console.log(0);
+            beoordeling = 0
+        }
+
+        antwoord = template.find("#HSL-Open-Input").value;
+
+        if (!!antwoord || antwoord!=""){
             let thislesson =Lessons.findOne();
             let answ = {antw: antwoord,rating: beoordeling};
             saveAnswer(answ,thislesson._id,thislesson.activequestion);
+        }else{
+            alert("Please fill in an answer before submitting");
         }
+
+
+    }
+    ,"click #ENDLESSON"(event,tempate){
+        Router.go("homeStudentToken");
+    }
 
     });
 

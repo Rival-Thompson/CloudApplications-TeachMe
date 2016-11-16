@@ -1,4 +1,15 @@
 <template name="HSL_OpenQuestion">
     <h3 class="question"> {{qst.question}}</h3>
-    <p>OPEN</p>
+    <div style="overflow: auto">
+        <div style="width: 100%;display: block; text-align: center;">
+            <form action="" class="answerForm fullWidth">
+              <textarea id="HSL-Open-Input" class="HSL-Open-Input " style=" max-width: 85%" placeholder="Fill in your answer here..."></textarea>
+            </form>
+        </div>
+
+    </div>
+    {{>HSl_Rating}}
+    <div style="text-align: center; width: 100%">
+        <button type="button" id="HSL_SaveOpenAnswer" class="button btn btn-primary">Submit</button>
+    </div>
 </template>
