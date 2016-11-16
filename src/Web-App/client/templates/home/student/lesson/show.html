@@ -1,7 +1,23 @@
 <template name="homeStudentLesson">
 
-    <div class="HSL">
-        {{#if not zelfde thisLesson.ActiveQuestion null}}
+    <div class="HSL clearfix">
+        {{#if thisLesson.activequestion}}
+            <div class="centered-hor fullWidth clearfix" style="margin-top: 5%">
+                {{#if zelfde selectedquestion.type "Open"}}
+                    {{>HSL_OpenQuestion qst=selectedquestion}}
+                {{else}}
+                    {{#if zelfde selectedquestion.type "MP"}}
+                        {{>HSL_MPQuestion qst=selectedquestion}}
+                    {{else}}
+                        {{#if zelfde selectedquestion.type "Code"}}
+                            {{>HSL_CodeQuestion qst=selectedquestion}}
+                        {{else}}
+                            <h3>Question </h3>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+            </div>
+
 
 
         {{else}}

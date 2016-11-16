@@ -1,3 +1,32 @@
 <template name="HSL_MPQuestion">
+    <h3 class="question"> {{qst.question}}</h3>
+    <div>
+        <div style="width: 100%;display: block; text-align: center;">
+            <form action="" class="answerForm">
+                <ul>
+                    {{#each option in qst.options}}
+
+                        <li>
+                            <input type="radio" name="mp" id="HSL_RB_{{option.num}}" value="{{option.num}}" >
+                            <label class="RadioButtons" for="HSL_RB_{{option.num}}">
+                                {{option.text}}
+                            </label>
+                            <div class="check"></div>
+                        </li>
+
+                        <div class="clearfix" style="clear: both;width: 100%"></div>
+
+                    {{/each}}
+
+                </ul>
+            </form>
+        </div>
+
+    </div>
+    {{>HSl_Rating}}
+    <div style="text-align: center; width: 100%">
+        <button type="button" id="HSL_SaveMPAnswer" class="button btn btn-primary">Save</button>
+    </div>
+
 
 </template>
