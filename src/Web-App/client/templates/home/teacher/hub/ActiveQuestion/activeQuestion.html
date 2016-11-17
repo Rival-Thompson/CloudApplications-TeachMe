@@ -9,6 +9,9 @@
                 {{#if zelfde thisActiveQuestion.type "Open"}}
                     {{>HTHAOpenQuest}}
                 {{/if}}
+                {{#if zelfde thisActiveQuestion.type "MP"}}
+                    {{>HTHAMPQuest}}
+                {{/if}}
             </div>
             <h4><b>{{thisActiveQuestion.rating}}</b></h4>
         </div>
