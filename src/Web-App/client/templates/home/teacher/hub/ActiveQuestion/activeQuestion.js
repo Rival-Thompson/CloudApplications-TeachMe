@@ -12,26 +12,26 @@ Template.homeTeacherHubActiveQuestion.helpers({
 Template.homeTeacherHubActiveQuestion.rendered = function () {
     var token = Router.current().params.token;
     Meteor.call("sendActiveQuestion", token, (error, response) => {
-        if (error) {
-            console.log(error);
-        } else {
-            console.log("Response: " + JSON.stringify(response.questions));
-            activeQuestion = response.questions[0];
-            activeQuestionDep.changed();
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Response: " + JSON.stringify(response.questions));
+                activeQuestion = response.questions[0];
+                activeQuestionDep.changed();
 
-            //console.log(activeQuestion.answers);
-            for (i = 0; i < activeQuestion.answers.length; i++) {
-                answers[i] = [activeQuestion.answers[i].antw, Math.floor(Math.random() * 20) + 8];
-                //console.log(answers[i]);
+                if (activeQuestion.type === "Open") {
+                    var ratings = 0;
+                    for (i = 0; i < activeQuestion.answers.length; i++) {
+                        answers[i] = [activeQuestion.answers[i].antw, 25];
+                        //console.log(answers[i]);
+                        ratings += parseInt(activeQuestion.answers[i].rating);
+                    }
+                    activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
+                    console.log(answers);
+                }
             }
-            console.log(answers);
-
-            WordCloud(document.getElementById('canvas'),
-                {list: answers, backgroundColor: "transparent", wait: 250,
-                    gridSize: Math.round(16 * $('#canvas').height() / 1024)
-                });
         }
-    });
+    );
 
     /*var chart = c3.generate({
      bindto: '#chart',
@@ -43,4 +43,15 @@ Template.homeTeacherHubActiveQuestion.rendered = function () {
      }
      });
      */
+};
+
+Template.HTHAOpenQuest.rendered = function () {
+    WordCloud(document.getElementById("HTHA-open-canvas"), {
+        list: answers,
+        backgroundColor: "transparent",
+        wait: 250,
+        gridSize: 15,
+        fontWeight: "bold",
+        shuffle: true
+    });
 };
