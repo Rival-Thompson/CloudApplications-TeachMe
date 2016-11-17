@@ -1,5 +1,6 @@
 .HSL{
     width: 100%;
+    margin-top: 0;
 }
 
 .HSL h2{
@@ -10,7 +11,7 @@ font-size: 4em;
 }
 
 .HSL .question{
-    font-size: 4em;
+    font-size: 3.5em;
     font-weight: bolder;
     text-align: center;
 
@@ -117,4 +118,14 @@ font-size: 4em;
 .HSL .HSL-Open-Input:focus{
     background-color: rgba(255,255,255,0.3);
     outline: none;
+}
+
+.HSL .HSL-Code-Example{
+    width: 80%;
+    font-size: 2.2em;
+    font-weight: bold;
+    background-color: rgba(255,255,255,0.1);
+    border: none;
+    min-height: 10vh;
+    max-height: 50vh;
 }

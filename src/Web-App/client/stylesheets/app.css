@@ -3,7 +3,7 @@
     --backgroudncolor-main: #6bb9ff;
     --backgroudncolor-light: #c9e3ff;
     --backgroudncolor-light2: #98c8ff;
-    --collor-green-buttons: #93d493;
+    --color-green-buttons: #93d493;
     --collor-customselect: #0DFF92;
     --collor-customselect-light: #59ffa4;
     --collor-customnoselect: #5e5e5e;
@@ -37,7 +37,7 @@ html,body{
 
 
 .tabPlus {
-    background-color: var(--collor-green-buttons);
+    background-color: var(--color-green-buttons);
     border-bottom-left-radius: 5px;
     border-top-left-radius: 5px;
     margin-right: 0;
@@ -62,8 +62,8 @@ html,body{
 
 .loader {
     border: 4em solid var(--backgroudncolor-light); /* Light grey */
-    border-top: 4em solid var(--collor-green-buttons); /* Blue */
-    border-bottom: 4em solid var(--collor-green-buttons);
+    border-top: 4em solid var(--color-green-buttons); /* Blue */
+    border-bottom: 4em solid var(--color-green-buttons);
     border-radius: 50%;
     width: 10em;
     height: 10em;

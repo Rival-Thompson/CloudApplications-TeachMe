@@ -3,7 +3,7 @@
     <div class="HSL clearfix fullWidth">
         {{>navStudent thisLesson=thisLesson}}
         {{#if thisLesson.activequestion}}
-            <div class="centered-hor fullWidth clearfix" style="margin-top: 5%">
+            <div class="fullWidth clearfix" style="margin-top: 1%">
                 {{#if zelfde selectedquestion.type "Open"}}
                     {{>HSL_OpenQuestion qst=selectedquestion}}
                 {{else}}

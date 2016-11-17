@@ -8,7 +8,7 @@ Meteor.methods({
    },
     pushAnswer(args){
 
-       return  Lessons.update({_id:args.id,'questions.num':args.num},{"$push":{'questions.$.answers':{antw:args.answer}}});
+       return  Lessons.update({_id:args.id,'questions.num':args.num},{"$push":{'questions.$.answers':args.answer}});
     },getUser(){
         return Meteor.user();
     },

@@ -2,6 +2,8 @@
  * Created by Rival on 25/10/2016.
  */
 Meteor.subscribe('user');
+var editor;
+var editor2;
 
 Template.registerHelper('zelfde', (a, b)=> {
     return a == b;
@@ -20,8 +22,9 @@ Template.homeStudentLesson.helpers({
     selectedquestion: function () {
         //console.log("selected quest update");
         let thislesson =Lessons.findOne();
-        return ReactiveMethod.call('getQuestion',{token:thislesson.token,num:thislesson.activequestion});
-    }
+        let qst =ReactiveMethod.call('getQuestion',{token:thislesson.token,num:thislesson.activequestion});
+        if(editor2 && qst.type == "Code")editor2.setValue(qst.QuestExample);
+        return qst}
 });
 
 Template.homeStudentLesson.events({
@@ -94,4 +97,15 @@ Template.homeStudentLesson.rendered = function () {
     console.log("the awesome token is: " + token);
         Meteor.subscribe('studentLesson',token);
 
+};
+
+Template.HSL_CodeQuestion.rendered = function () {
+    editor = ace.edit("editor");
+    editor.setTheme("ace/theme/cobalt");
+    editor.getSession().setMode("ace/mode/javascript");
+    console.log("editting: " + editor);
+
+    editor2 = ace.edit("editor2");
+    editor2.setTheme("ace/theme/monokai");
+    editor2.getSession().setMode("ace/mode/javascript");
 };
