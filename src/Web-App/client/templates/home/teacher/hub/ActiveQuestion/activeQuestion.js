@@ -1,6 +1,8 @@
 var activeQuestion = null;
 var activeQuestionDep = new Tracker.Dependency;
 var answers = [];
+var aantalPerOption = [];
+var chartData = [];
 
 Template.homeTeacherHubActiveQuestion.helpers({
     thisActiveQuestion: function () {
@@ -28,14 +30,27 @@ Template.homeTeacherHubActiveQuestion.rendered = function () {
                     }
                     activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
                     console.log(answers);
-                } else if (activeQuestion.type === "MP"){
-
+                } else if (activeQuestion.type === "MP") {
+                    var ratings = 0;
+                    for (i = 0; i < activeQuestion.options.length; i++) {
+                        chartData[i] = [activeQuestion.options[i].text, 0];
+                        aantalPerOption[i] = 0;
+                        for (j = 0; j < activeQuestion.answers.length; j++) {
+                            if (activeQuestion.options[i].num === parseInt(activeQuestion.answers[j].antw)) {
+                                aantalPerOption[i]++;
+                                ratings += parseInt(activeQuestion.answers[j].rating);
+                                console.log("Vraag " + activeQuestion.options[i].num + ": " + activeQuestion.options[i].text + " komt " + aantalPerOption[i] + " keer voor");
+                            }
+                        }
+                        chartData[i] = [activeQuestion.options[i].text, aantalPerOption[i]];
+                        //console.log(chartData[i]);
+                    }
+                    activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
+                    //console.log(chartData);
                 }
             }
         }
     );
-
-
 };
 
 Template.HTHAOpenQuest.rendered = function () {
@@ -55,31 +70,45 @@ Template.HTHAMPQuest.rendered = function () {
         data: {
             // iris data from R
             columns: [
-                ['data1', 30],
-                ['data2', 120],
+                ["opvulling", 10],
+                ["extra", 50],
             ],
-            type : 'pie',
-            onclick: function (d, i) { console.log("onclick", d, i); },
-            onmouseover: function (d, i) { console.log("onmouseover", d, i); },
-            onmouseout: function (d, i) { console.log("onmouseout", d, i); }
+            type: 'pie',
+            color: {
+                pattern: [
+                    '#ff7f0e', '#ffbb78', '#2ca02c',
+                    '#98df8a', '#d62728', '#ff9896',
+                    '#9467bd', '#c5b0d5', '#8c564b',
+                    '#c49c94', '#e377c2', '#f7b6d2',
+                    '#7f7f7f', '#c7c7c7', '#bcbd22',
+                    '#dbdb8d', '#17becf', '#9edae5']
+            }
+        },
+        pie: {
+            label: {
+                format: function (value) {
+                    return d3.format()(value);
+                }
+            }
         }
     });
-    setTimeout(function () {
-        chart.load({
-            columns: [
-                ["setosa", 0.2, 0.2, 0.2, 0.2, 0.2, 0.4, 0.3, 0.2, 0.2, 0.1, 0.2, 0.2, 0.1, 0.1, 0.2, 0.4, 0.4, 0.3, 0.3, 0.3, 0.2, 0.4, 0.2, 0.5, 0.2, 0.2, 0.4, 0.2, 0.2, 0.2, 0.2, 0.4, 0.1, 0.2, 0.2, 0.2, 0.2, 0.1, 0.2, 0.2, 0.3, 0.3, 0.2, 0.6, 0.4, 0.3, 0.2, 0.2, 0.2, 0.2],
-                ["versicolor", 1.4, 1.5, 1.5, 1.3, 1.5, 1.3, 1.6, 1.0, 1.3, 1.4, 1.0, 1.5, 1.0, 1.4, 1.3, 1.4, 1.5, 1.0, 1.5, 1.1, 1.8, 1.3, 1.5, 1.2, 1.3, 1.4, 1.4, 1.7, 1.5, 1.0, 1.1, 1.0, 1.2, 1.6, 1.5, 1.6, 1.5, 1.3, 1.3, 1.3, 1.2, 1.4, 1.2, 1.0, 1.3, 1.2, 1.3, 1.3, 1.1, 1.3],
-                ["virginica", 2.5, 1.9, 2.1, 1.8, 2.2, 2.1, 1.7, 1.8, 1.8, 2.5, 2.0, 1.9, 2.1, 2.0, 2.4, 2.3, 1.8, 2.2, 2.3, 1.5, 2.3, 2.0, 2.0, 1.8, 2.1, 1.8, 1.8, 1.8, 2.1, 1.6, 1.9, 2.0, 2.2, 1.5, 1.4, 2.3, 2.4, 1.8, 1.8, 2.1, 2.4, 2.3, 1.9, 2.3, 2.5, 2.3, 1.9, 2.0, 2.3, 1.8],
-            ]
-        });
-    }, 1500);
 
     setTimeout(function () {
         chart.unload({
-            ids: 'data1'
+            ids: 'opvulling'
         });
+    }, 2000);
+
+    setTimeout(function () {
         chart.unload({
-            ids: 'data2'
+            ids: 'extra'
         });
-    }, 2500);
+    }, 1000);
+
+    setTimeout(function () {
+        chart.load({
+            columns: chartData
+        });
+    }, 1500);
+
 };
