@@ -27,3 +27,6 @@ accounts-facebook@1.0.10
 accounts-google@1.0.10
 aldeed:simple-schema
 simple:reactive-method
+juliancwirko:s-alert
+juliancwirko:s-alert-flip
+benjaminrh:jquery-cookie

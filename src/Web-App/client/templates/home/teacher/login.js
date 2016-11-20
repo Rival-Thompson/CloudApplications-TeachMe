@@ -1,20 +1,33 @@
 Meteor.subscribe('user');
+function validateEmail(email) {
+    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return re.test(email);
+}
+
 Template.homeTeacherLogin.events({
     'submit .login-form': function (event) {
         event.preventDefault();
         var email = event.target.email.value;
         var password = event.target.password.value;
 
-        Meteor.loginWithPassword(email,password,function(err){
-            if(!err) {
-                alert("login successful!");
-                Meteor.subscribe('lessons');
-                Router.go("homeTeacherDashboard");
-            }
-            else {
-                console.log(err.message);
-            }
-        });
+        if (!!email && validateEmail(email)){
+
+            Meteor.loginWithPassword(email,password,function(err){
+                if(!err) {
+                    sAlert.success("login successful!",{onRouteClose: false});
+                    Meteor.subscribe('lessons');
+                    Router.go("homeTeacherDashboard");
+                }
+                else {
+                    sAlert.error(err.message);
+                    console.log(err.message);
+                }
+            });
+
+        }else {
+            sAlert.warning("Invalid Email! Please enter a valid email to continue.");
+        }
+
     },
 
     'click .btn-facebook':function(event){
