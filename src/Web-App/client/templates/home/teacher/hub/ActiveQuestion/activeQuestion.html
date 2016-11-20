@@ -1,0 +1,19 @@
+<template name="homeTeacherHubActiveQuestion">
+    <div class="teacherHubActiveQuestion" style="height: 100%;">
+        {{>navSignin}}
+        <div class="HTH_ActiveQuestion centered" style="max-height: 80%; width: 80%; overflow: auto; text-align: center">
+            <h3 style="font-size: 4em; font-weight: bolder; text-align: center;">
+                {{thisActiveQuestion.question}}
+            </h3>
+            <div id="visualisation" style="height: 60vh">
+                {{#if zelfde thisActiveQuestion.type "Open"}}
+                    {{>HTHAOpenQuest}}
+                {{/if}}
+                {{#if zelfde thisActiveQuestion.type "MP"}}
+                    {{>HTHAMPQuest}}
+                {{/if}}
+            </div>
+            <h4><b>{{thisActiveQuestion.rating}}</b></h4>
+        </div>
+    </div>
+</template>

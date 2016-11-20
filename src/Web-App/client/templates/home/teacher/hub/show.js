@@ -143,6 +143,20 @@ Template.homeTeacherHub.events({
         selectedDep.changed();
         lessonDep.changed();
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
+    },
+    "click #HTH_AskQuest"(event) {
+        console.log(selected.num);
+        Lessons.update({_id: lesson._id}, {$set: {activequestion: selected.num}});
+        Router.go("homeTeacherHubActiveQuestion", {token: lesson.token, activeNum: selected.num});
+    },
+    "click #HTH_RemoveAnswers"(event) {
+        Meteor.call("removeAnswers", {_id: lesson._id, num: selected.num}, (error)=> {
+            if (error) {
+                console.log(error);
+            } else {
+                console.log("Answers successfully removed");
+            }
+        });
     }
 });
 
