@@ -28,7 +28,7 @@ Meteor.methods({
         var tempNum = Lessons.findOne({"token": token}).activequestion;
 
         console.log(Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}}));
-        return Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}});
+        return Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}}).questions[0];
     },
     removeAnswers(id, num){
         return Lessons.update({_id: id, "questions.num": num}, {$pull: {"questions.$.answers": []}});
