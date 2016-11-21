@@ -1,5 +1,4 @@
 Meteor.subscribe('user');
-Meteor.subscribe('lessons');
 
 var activeQuestion = null;
 var answers = [];
@@ -17,16 +16,16 @@ Template.homeTeacherHubActiveQuestion.helpers({
         currentqst = Lessons.findOne({token: token});
 
         console.log(currentqst);
-        if(!!currentqst){
+        if (!!currentqst) {
             lessonupdated.changed();
         }
-            return currentqst;
+        return currentqst;
     },
     thisActiveQuestion: function () {
         lessonupdated.depend();
         console.log(token + " : " + currentqst);
         let response = null;
-        if(!!currentqst) {
+        if (!!currentqst) {
             response = ReactiveMethod.call("getQuestion", {token: token, num: currentqst.activequestion});
             console.log(response);
         }
@@ -72,6 +71,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
 
 Template.homeTeacherHubActiveQuestion.rendered = function () {
     token = Router.current().params.token;
+    Meteor.subscribe('studentLesson', token);
     /*
      Meteor.call("sendActiveQuestion", token, (error, response) => {
      if (error) {
