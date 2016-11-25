@@ -1,0 +1,80 @@
+:root {
+    --nav-bgDefault      : #A5BE00;
+    --nav-bgHighlight    : #679436;
+    --nav-colDefault     : #EBF2FA;
+    --nav-colHover       : #D1ED00;
+}
+
+.studentSide .navbar-default {
+    background-color: var(--nav-bgDefault);
+    border-color: var(--nav-bgDefault);
+}
+.studentSide .navbar-default .navbar-text {
+    color: var(--nav-bgHighlight);
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+.studentSide .navbar-default .navbar-brand {
+    color: var(--nav-colDefault);
+}
+
+.studentSide .navbar-default .navbar-brand:hover, .navbar-default .navbar-brand:focus {
+    color: var(--nav-colHover);
+}
+
+.studentSide .navbar-default .navbar-nav > li > a {
+    color: var(--nav-colDefault);
+}
+
+.studentSide .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus {
+    color: var(--nav-colHover);
+}
+
+.studentSide .navbar-default .navbar-nav .active > a, .navbar-default .navbar-nav .active > a:hover, .navbar-default .navbar-nav .active > a:focus {
+    color: var(--nav-colHover);
+    background-color: var(--nav-bgHighlight);
+}
+
+.studentSide .navbar-default .navbar-nav .open > a, .navbar-default .navbar-nav .open > a:hover, .navbar-default .navbar-nav .open > a:focus {
+    color: var(--nav-colHover);
+    background-color: var(--nav-bgHighlight);
+}
+
+.studentSide .navbar-default .navbar-nav .open > a .caret, .navbar-default .navbar-nav .open > a:hover .caret, .navbar-default .navbar-nav .open > a:focus .caret {
+    border-top-color: var(--nav-colHover);
+    border-bottom-color: var(--nav-colHover);
+}
+
+.studentSide .navbar-default .navbar-nav > .dropdown > a .caret {
+    border-top-color: var(--nav-colDefault);
+    border-bottom-color: var(--nav-colDefault);
+}
+
+.studentSide .navbar-default .navbar-nav > .dropdown > a:hover .caret, .navbar-default .navbar-nav > .dropdown > a:focus .caret {
+    border-top-color: var(--nav-colHover);
+    border-bottom-color: var(--nav-colHover);
+}
+
+.studentSide .navbar-default .navbar-toggle {
+    border-color: var(--nav-bgHighlight);
+}
+
+.studentSide .navbar-default .navbar-toggle:hover, .navbar-default .navbar-toggle:focus {
+    background-color: var(--nav-bgHighlight);
+}
+
+.studentSide .navbar-default .navbar-toggle .icon-bar {
+    background-color: var(--nav-bgDefault);
+}
+
+@media (max-width: 767px) {
+    .studentSide .navbar-default .navbar-nav .open .dropdown-menu > li > a {
+        color: var(--nav-colDefault);
+    }
+
+    .studentSide .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: var(--nav-colHover);
+        background-color: var(--nav-bgHighlight);
+    }
+}

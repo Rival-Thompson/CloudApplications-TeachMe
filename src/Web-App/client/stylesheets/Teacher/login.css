@@ -1,5 +1,5 @@
 .teacherLogin .banner {
-    color: #223355;
+    color: var(--color-accentdark);
     font-size: 9em;
     font-weight: bolder;
     align-items: center;
@@ -7,7 +7,7 @@
 }
 
 .teacherLogin .teacher {
-    color: #3c4d89;
+    color: var(--color-accentlight);
     font-size: 3em;
     font-weight: bolder;
     align-items: center;

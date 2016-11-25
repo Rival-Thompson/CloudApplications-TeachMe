@@ -1,13 +1,30 @@
 .welcome {
-    width: 80%;
-    position: fixed; /* or absolute */
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 100%;
+
+}
+
+.welcome .topPart{
+    height: 40em;
+    width: 100%;
+    background: rgba(0,0,0,0.95);
+    border-bottom-left-radius: 1em;
+    border-bottom-right-radius: 1em;
+}
+
+.welcome .topPart .text{
+    margin-top: 10em;
+    margin-left: 1.2em;
+    max-width: 700px;
+    color: white;
+}
+
+.welcome .topPart h2{
+    font-size: 4em;
+    font-weight: bold;
 }
 
 .welcome .banner{
-    color: #223355;
+    color: var(--color-accentdark);
     font-size: 9em;
     font-weight: bolder;
     align-items: center;
@@ -47,26 +64,26 @@
     -moz-box-shadow: 0px 10px 14px -7px #3e7327;
     -webkit-box-shadow: 0px 10px 14px -7px #3e7327;
     box-shadow: 0px 10px 14px -7px #3e7327;
-    background-color:#77b55a;
+    background-color:#A5BE00;
     border:1px solid #528538;
     color:#ffffff;
     text-shadow:0px 1px 0px #5b8a3c;
 }
 .welcome .student:hover {
-    background-color:#5acc21;
+    background-color:#D1ED00;
 }
 
 .welcome .teacher{
     -moz-box-shadow: 0px 10px 14px -7px #2e3a73;
     -webkit-box-shadow: 0px 10px 14px -7px #374482;
     box-shadow: 0px 10px 14px -7px #3a5373;
-    background-color: #6475b5;
+    background-color: #078EC4;
     border:1px solid #476485;
     color:#ffffff;
     text-shadow:0px 1px 0px #555f8a;
 }
 
 .welcome .teacher:hover {
-    background-color: #4c42cc;
+    background-color: #00B6FF;
 }
 

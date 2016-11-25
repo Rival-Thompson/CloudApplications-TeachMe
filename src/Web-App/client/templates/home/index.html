@@ -1,10 +1,53 @@
 <template name="homeIndex">
     <div class="welcome">
+        <div class="topPart">
+            <nav class="nav navbar navbar-default" style="background-color: rgba(255,255,255,0.2); border:none; color:white;">
+                <div class="container-fluid">
+                <!-- Brand and toggle get grouped for better mobile display -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1" aria-expanded="false">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <span  class="navbar-brand" >
+                        <img style="max-height: 100%; margin-top: -2px;display: inline" alt="LOGO of teach me" src="/images/favicon/favicon-96x96.png">
+                        TEACH-ME
+                    </span>
+                </div>
+
+                <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                            <li><a class="btn btn-blue1 navbar-btn" href="{{pathFor "homeTeacherLogin"}}" style="color:white;">Teacher</a></li>
+                            <li><a class="btn btn-green1 navbar-btn" href="{{pathFor "homeStudentToken"}}" style="color:white;">Student</a></li>
+                    </ul>
+                </div>
+                </div>
+
+            </nav>
+
+            <div class="text">
+
+                <h2>
+                    Collaborative teaching platform
+                </h2>
+                <h3>
+                    Teach-Me is a new pressentation tool for in the classroom, that will bring students closer to the lessons.
+                </h3>
+                <a class="btn  btn-round btn-whiteToBlue"  href="{{pathFor "homeTeacherLogin"}}">Get Started as a teacher</a>
+                <a class="btn  btn-round btn-whiteToGreen" href="{{pathFor "homeStudentToken"}}">Follow a lesson</a>
+            </div>
+
+
+        </div>
+        <!--
         <h1 class="banner">Welcome to Teach-Me!</h1>
         <div class="buttonContainer">
                 <a class="button teacher" href="{{pathFor "homeTeacherLogin"}}">Teacher</a>
                 <a class="button student" href="{{pathFor "homeStudentToken"}}">Student</a>
         </div>
+        -->
 
     </div>
 

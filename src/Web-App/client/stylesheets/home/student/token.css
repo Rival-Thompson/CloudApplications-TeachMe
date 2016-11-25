@@ -1,5 +1,5 @@
 .studentToken .banner{
-    color: #223355;
+    color: var(--color-accentdark);
     font-size: 6em;
     font-weight: bolder;
     align-items: center;
@@ -7,7 +7,7 @@
 }
 
 .studentToken .subBanner{
-    color: #3a65ad;
+    color: var(--color-accentlight);
     font-size: 3em;
     font-weight: bolder;
     align-items: center;
@@ -22,7 +22,7 @@
     display: block;
     align-items: center;
     font-size: 3em;
-    color: #2e3a73;
+    color: var(--color-accentdark);
 
     text-align: center;
     font-weight: bolder;

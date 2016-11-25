@@ -2,12 +2,12 @@
 Meteor.subscribe('user');
 
 
-var lesson = null;
-var lessonDep = new Tracker.Dependency;
-var selected = null;
-var selectedDep = new Tracker.Dependency;
-var tabsHeight = $("#HTH_tabs").height() + 50 + "px";
-var tabsHeightDep = new Tracker.Dependency;
+let lesson = null;
+let lessonDep = new Tracker.Dependency;
+let selected = null;
+let selectedDep = new Tracker.Dependency;
+let tabsHeight = $("#HTH_tabs").height() + 50 + "px";
+let tabsHeightDep = new Tracker.Dependency;
 
 Template.registerHelper('zelfde', (a, b)=> {
     return a == b;
