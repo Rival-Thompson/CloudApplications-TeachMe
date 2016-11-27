@@ -4,7 +4,7 @@
 }
 
 .welcome .topPart{
-    height: 40em;
+    height: 45em;
     width: 100%;
     background: rgba(0,0,0,0.95);
     border-bottom-left-radius: 1em;
@@ -13,7 +13,7 @@
 
 .welcome .topPart .text{
     margin-top: 10em;
-    margin-left: 1.2em;
+    margin-left: 2em;
     max-width: 700px;
     color: white;
 }
@@ -85,5 +85,36 @@
 
 .welcome .teacher:hover {
     background-color: #00B6FF;
+}
+
+
+
+.featurette-divider {
+    margin: 5rem 0; /* Space out the Bootstrap <hr> more */
+    border-top-color: #c1c1a8;
+}
+
+/* Thin out the marketing headings */
+.featurette-heading {
+    font-weight: 300;
+    line-height: 1;
+    letter-spacing: -.05rem;
+}
+
+
+/* RESPONSIVE CSS
+-------------------------------------------------- */
+
+@media (min-width: 40em) {
+
+    .featurette-heading {
+        font-size: 50px;
+    }
+}
+
+@media (min-width: 62em) {
+    .featurette-heading {
+        margin-top: 7rem;
+    }
 }
 

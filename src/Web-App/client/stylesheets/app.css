@@ -17,10 +17,25 @@
 
 
 }
+.text-blue1 {
+    color: #00B6FF;
+}
+.text-blue2 {
+    color: #078ec4;
+}
+.text-green1 {
+    color: #D1ED00;
+}
+.text-green2 {
+    color: #A5BE00;
+}
 
 
-html{
-    font-family: "Roboto", sans-serif;
+
+
+body{
+    font-family: "Roboto", sans-serif !important;
+    /*color: beige;*/
 }
 
 html,body{

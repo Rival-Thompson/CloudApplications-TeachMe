@@ -1,6 +1,7 @@
 <template name="homeIndex">
     <div class="welcome">
-        <div class="topPart">
+        <a name="top" style="display: none"></a>
+        <div class="topPart" id="topPart">
             <nav class="nav navbar navbar-default" style="background-color: rgba(255,255,255,0.2); border:none; color:white;">
                 <div class="container-fluid">
                 <!-- Brand and toggle get grouped for better mobile display -->
@@ -35,12 +36,67 @@
                 <h3>
                     Teach-Me is a new pressentation tool for in the classroom, that will bring students closer to the lessons.
                 </h3>
-                <a class="btn  btn-round btn-whiteToBlue"  href="{{pathFor "homeTeacherLogin"}}">Get Started as a teacher</a>
-                <a class="btn  btn-round btn-whiteToGreen" href="{{pathFor "homeStudentToken"}}">Follow a lesson</a>
+                <div style="margin-top: 2em;">
+                    <a class="btn  btn-round btn-whiteToBlue"  href="{{pathFor "homeTeacherLogin"}}">Get Started as a teacher</a>
+                    <a class="btn  btn-round btn-whiteToGreen" href="{{pathFor "homeStudentToken"}}">Follow a lesson</a>
+                </div>
             </div>
 
 
         </div>
+
+        <div class="container marketing">
+
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading text-blue2">The new way to interact <span class="text-muted"></span></h2>
+                    <p class="lead">Your questions wil reach your audience. Your audience wil be actively busy with what you try to teach them. All by using one web app.</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px;" src="/images/welcome/pres.jpg" data-holder-rendered="true">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7 col-md-push-5">
+                    <h2 class="featurette-heading text-green2">No more bored students <span class="text-muted"></span></h2>
+                    <p class="lead">Your student wil now be actively answering your questions and generate real feedback. Which helps you to improve your lessons and helps them learn better and more.</p>
+                </div>
+                <div class="col-md-5 col-md-pull-7">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px;" src="/images/welcome/student.png" data-holder-rendered="true">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <div class="row featurette">
+                <div class="col-md-7">
+                    <h2 class="featurette-heading text-blue2">Cross platform <span class="text-muted"></span></h2>
+                    <p class="lead">You and your audience aren't bound to any platform. You can use your phone, tablet and laptop to do give and follow lessons..</p>
+                </div>
+                <div class="col-md-5">
+                    <img class="featurette-image img-responsive" data-src="holder.js/500x500/auto" alt="500x500" style="width: 500px;" src="/images/welcome/crosplatform.png" data-holder-rendered="true">
+                </div>
+            </div>
+
+            <hr class="featurette-divider">
+
+            <!-- /END THE FEATURETTES -->
+
+
+            <!-- FOOTER -->
+            <footer>
+                <p class="pull-right"><a onclick=" $('html, body').animate({scrollTop: $('#topPart').offset().top}, 600);">Back to top</a></p>
+                <p>Source code on github: <a href="https://github.com/Rival-Thompson/CloudApplications-TeachMe/tree/develop">Our repo</a> </p>
+            </footer>
+
+        </div>
+
         <!--
         <h1 class="banner">Welcome to Teach-Me!</h1>
         <div class="buttonContainer">
