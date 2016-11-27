@@ -7,18 +7,36 @@ var chartData = [];
 var token;
 let currentActiveLesson;
 let wordcloudDiv;
+let updateLesson = new Tracker.Dependency;
+var previous;
 
-drawWordCloud = function () {
+drawWordCloud = function (drawSpot) {
     console.log("Draw this");
-    if (!!wordcloudDiv) {
-        WordCloud(wordcloudDiv, {
-            list: answers,
-            backgroundColor: "transparent",
-            wait: 250,
-            gridSize: 15,
-            fontWeight: "bold",
-            shuffle: true
-        });
+    WordCloud(drawSpot, {
+        list: answers,
+        backgroundColor: "transparent",
+        wait: 250,
+        gridSize: 15,
+        fontWeight: "bold",
+        shuffle: true
+    });
+};
+
+updateData = function (activeqst) {
+    if (activeqst.type === "Open") {
+        var ratings = 0;
+        if (activeqst.answers) {
+            for (i = 0; i < activeqst.answers.length; i++) {
+                answers[i] = [activeqst.answers[i].antw, 25];
+                ratings += parseInt(activeqst.answers[i].rating);
+            }
+            activeqst.rating = Math.round(ratings / activeqst.answers.length);
+            console.log(answers);
+
+            if (!!wordcloudDiv)
+                drawWordCloud(wordcloudDiv);
+
+        } else console.log("No answers yet");
     }
 };
 
@@ -32,31 +50,21 @@ Template.homeTeacherHubActiveQuestion.helpers({
         if (!!currentActiveLesson) {
             currentActiveLesson.questions.forEach(function (qst, index) {
                 if (qst.num == currentActiveLesson.activequestion) {
-                    let activeqst = qst;
-                    if (activeqst.type === "Open") {
-                        var ratings = 0;
-                        if (activeqst.answers) {
-                            for (i = 0; i < activeqst.answers.length; i++) {
-                                answers[i] = [activeqst.answers[i].antw, 25];
-                                ratings += parseInt(activeqst.answers[i].rating);
-                            }
-                            activeqst.rating = Math.round(ratings / activeqst.answers.length);
-                            console.log(answers);
-
-                            drawWordCloud();
-
-                        } else console.log("No answers yet");
-                    }
+                    updateData(qst)
                 }
             });
             console.log("active Lesson: " + currentActiveLesson);
         }
-
-        Template.homeTeacherHubActiveQuestion.rendered();
+        if (previous != currentActiveLesson) {
+            previous = currentActiveLesson;
+            updateLesson.changed();
+        }
 
         return currentActiveLesson;
     },
     thisActiveQuestion: function () {
+        updateLesson.depend();
+
         let response = null;
 
         if (!!currentActiveLesson) {
@@ -65,21 +73,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
 
             if (!!response) {
                 //console.log("Response: " + JSON.stringify(response.answers));
-                activeQuestion = response;
-
-                if (activeQuestion.type === "Open") {
-                    var ratings = 0;
-                    if (activeQuestion.answers) {
-                        for (i = 0; i < activeQuestion.answers.length; i++) {
-                            answers[i] = [activeQuestion.answers[i].antw, 25];
-                            ratings += parseInt(activeQuestion.answers[i].rating);
-                        }
-                        activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
-                        console.log(answers);
-                        console.log("activeQuestion draws this!");
-
-                    } else console.log("No answers yet");
-                }
+                updateData(response);
             } else console.log("No response!");
         }
         return response;
@@ -132,7 +126,10 @@ Template.homeTeacherHubActiveQuestion.rendered = function () {
 };
 
 Template.HTHAOpenQuest.rendered = function () {
-    wordcloudDiv = document.getElementById("HTHA-open-canvas");
+    if (!wordcloudDiv) {
+        wordcloudDiv = document.getElementById("HTHA-open-canvas");
+        updateLesson.changed();
+    }
 };
 
 Template.HTHAMPQuest.rendered = function () {
