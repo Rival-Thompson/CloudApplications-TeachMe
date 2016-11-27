@@ -37,6 +37,7 @@ emdagon:c3js@0.0.2
 es5-shim@4.6.14_1
 facebook@1.2.8
 fastclick@1.0.12
+fortawesome:fontawesome@4.7.0
 geojson-utils@1.0.9
 google@1.1.13
 hot-code-push@1.0.4

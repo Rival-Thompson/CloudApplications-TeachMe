@@ -1,58 +1,36 @@
-.teacherLogin .banner {
-    color: var(--color-accentdark);
-    font-size: 9em;
-    font-weight: bolder;
-    align-items: center;
-    text-align: center;
+.teacherLogin h1 {
+    font-size: 6em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
 }
-
-.teacherLogin .teacher {
-    color: var(--color-accentlight);
-    font-size: 3em;
-    font-weight: bolder;
-    align-items: center;
-    text-align: center;
+.teacherLogin h2 {
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
 }
-
-.teacherLogin .login-form {
-    width: 60%;
-    margin: 0 auto;
-    text-align: center;
+.teacherLogin h3
+{
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    padding: 0;
+    text-align: left;
 }
-
-.teacherLogin input {
-    width: 50%;
-    max-width: 500px;
-    text-align: center;
-    font-weight: bolder;
-    margin-top: 5%;
-    color: black;
-    border: none;
-    border-bottom: solid;
-    background-color: transparent;
+.teacherLogin .block{
+    background: rgba(0,0,0,0.2);
+    padding: 5em;
+    border: 2em rgba(0,0,0,0.4);
+    box-shadow: 1.5em 1.5em 1.5em rgba(0,0,0,0.4);
+    border-radius: 1em;
+    display: inline-block;
+    max-width: 50em
 }
-
-.teacherLogin ::-webkit-input-placeholder { /* Chrome/Opera/Safari */
-    color: black;
+.teacherLogin {
+    margin-top: -10em;
 }
-.teacherLogin ::-moz-placeholder { /* Firefox 19+ */
-    color: black;
-}
-
-.teacherLogin .buttons {
-    margin-top: 5%;
-}
-
-.teacherLogin .buttons button, .buttons a {
-    width: 150px;
-}
-
-.teacherLogin button, a {
-    margin-left: 1%;
-}
-
-.teacherLogin .login-form .buttonContainer {
-    width: 100%;
-    margin-top: 1%;
-    text-align: center;
+.teacherLogin .button{
+    min-width: 112px;
 }

@@ -43,11 +43,11 @@
     margin-top: 5%;
 }
 
-.teacherSignup .buttons button, .buttons a {
+.teacherSignup .buttons button, .teacherSignup .buttons a {
     width: 150px;
 }
 
-.teacherSignup button, a {
+.teacherSignup button, .teacherSignup a {
     margin-left: 1%;
 }
 

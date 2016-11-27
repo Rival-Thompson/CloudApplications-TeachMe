@@ -1,28 +1,54 @@
 <template name="homeTeacherLogin">
-<div class="teacherLogin">
-    <!--{{>navSignin}}-->
-    {{>loginButtons}}
-    <h1 class="banner">Teach Me</h1>
-    <h2 class="teacher">Teacher {{currentUser.profile.name}}</h2>
-    <form class="login-form">
-        <div class="info">
-            <input type="email" name="email" id="email" placeholder="Email address" value="">
-            <br>
-            <input type="password" name="password" id="password" placeholder="password" value="">
+<div class="teacherLogin centered">
+    <!--{{>navTeacher}}
+    {{>loginButtons}}-->
+
+    <div style="text-align: center; width: 100%">
+        <div class="block" >
+            <h1 class="banner text-blue2">Teach Me</h1>
+            <hr>
+            <form class="login-form">
+                <div>
+
+                    <div class="container-fluid">
+                        <h3>Social logins & sign up</h3>
+                        <button class="btn btn-primary btn-facebook col-lg-4 button col-xs-12"> <i class="fa fa-facebook-official"></i> Facebook</button>
+                        <button class="btn btn-danger btn-google col-lg-4 button col-xs-12"><i class="fa fa-google" aria-hidden="true"></i> Google</button>
+                        <a type="link" class="btn btn-warning col-lg-4 button col-xs-12" href="{{pathFor "homeTeacherSignup"}}"><i class="fa fa-user-plus" aria-hidden="true"></i> Sign up</a>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="info container-fluid">
+                    <h3>Login as teacher</h3>
+                    <div class="input-group">
+                     <span  class="input-group-addon" id="email-addon1" >
+                        <i class="fa fa-envelope-o" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                    </span>
+                        <input class="form-control" aria-hidden="true" aria-describedby="email-addon1" type="email" name="email" id="email" placeholder="Email address" value="">
+                    </div>
+                    <div class="input-group">
+                    <span  class="input-group-addon" id="password-addon1">
+                        <i class="fa fa-lock" style="text-align: center; width: 1.2em"></i>
+                    </span>
+
+                        <input class="form-control" aria-describedby="password-addon1" type="password" name="password" id="password" placeholder="password" value="">
+                    </div>
+                    <button class="btn btn-success col-sm-12 col-xs-12" type="submit"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign in</button>
+                </div>
+                <hr>
+                <div class="container-fluid">
+
+                    <a  href="{{pathFor "homeIndex"}}" class="btn-default btn buttonBack col-sm-12 col-xs-12"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+
+                </div>
+
+            </form>
         </div>
-        <div class="buttons">
-            <div class="buttonContainer">
-                <button class="btn btn-success" type="submit">Login</button> <!--event handelen-->
-                <a class="btn btn-warning" href="{{pathFor "homeTeacherSignup"}}">Register</a>
-            </div>
-            <div class="buttonContainer">
-                <button class="btn btn-primary btn-facebook">Facebook Login</button>
-                <button class="btn btn-danger btn-google">Google Login</button>
-            </div>
-            <div class="buttonContainer">
-                <a  href="{{pathFor "homeIndex"}}" class="button btn-default btn buttonBack">Back</a>
-            </div>
-        </div>
-    </form>
+
+    </div>
+
+
+
 </div>
 </template>
