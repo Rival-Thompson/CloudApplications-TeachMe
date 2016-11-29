@@ -1,14 +1,16 @@
 Meteor.subscribe('user');
 
-var activeQuestion = null;
-var answers = [];
-var aantalPerOption = [];
-var chartData = [];
-var token;
+let activeQuestion = null;
+let answers = [];
+//let aantalPerOption = [];
+let chartData = [];
+let token;
 let currentActiveLesson;
 let wordcloudDiv;
-let updateLesson = new Tracker.Dependency;
-var previous;
+let ratingDep = new Tracker.Dependency;
+let rating;
+let qstDep = new Tracker.Dependency;
+let qstActive;
 
 drawWordCloud = function (drawSpot) {
     console.log("Draw this");
@@ -24,17 +26,18 @@ drawWordCloud = function (drawSpot) {
 
 updateData = function (activeqst) {
     if (activeqst.type === "Open") {
-        var ratings = 0;
+        let ratings = 0;
         if (activeqst.answers) {
             for (i = 0; i < activeqst.answers.length; i++) {
                 answers[i] = [activeqst.answers[i].antw, 25];
                 ratings += parseInt(activeqst.answers[i].rating);
             }
-            activeqst.rating = Math.round(ratings / activeqst.answers.length);
-            console.log(answers);
+            rating = Math.round(ratings / activeqst.answers.length);
+            ratingDep.changed();
+            console.log(rating);
 
-            if (!!wordcloudDiv)
-                drawWordCloud(wordcloudDiv);
+            qstActive = activeqst;
+            qstDep.changed();
 
         } else console.log("No answers yet");
     }
@@ -42,93 +45,51 @@ updateData = function (activeqst) {
 
 Template.homeTeacherHubActiveQuestion.helpers({
     thisLesson: function () {
-        token = Router.current().params.token;
-        console.log(token);
+        console.log("thisLesson");
+        if(!token) {
+            token = Router.current().params.token;
+            console.log(token);
+        }
 
         currentActiveLesson = Lessons.findOne({token: token});
         console.log(currentActiveLesson);
         if (!!currentActiveLesson) {
             currentActiveLesson.questions.forEach(function (qst, index) {
                 if (qst.num == currentActiveLesson.activequestion) {
+                    console.log(qst);
                     updateData(qst)
                 }
             });
-            console.log("active Lesson: " + currentActiveLesson);
-        }
-        if (previous != currentActiveLesson) {
-            previous = currentActiveLesson;
-            updateLesson.changed();
         }
 
         return currentActiveLesson;
     },
     thisActiveQuestion: function () {
-        updateLesson.depend();
+        console.log("thisActiveQuestion");
+        qstDep.depend();
 
-        let response = null;
+        if (!!wordcloudDiv && qstActive.type == "Open")
+            drawWordCloud(wordcloudDiv);
 
-        if (!!currentActiveLesson) {
-            response = ReactiveMethod.call("getQuestion", {token: token, num: currentActiveLesson.activequestion});
-            console.log(response);
-
-            if (!!response) {
-                //console.log("Response: " + JSON.stringify(response.answers));
-                updateData(response);
-            } else console.log("No response!");
-        }
-        return response;
+        return qstActive;
+    },
+    getRating: function () {
+        console.log("getRating");
+        ratingDep.depend();
+        return rating;
     }
 });
 
 Template.homeTeacherHubActiveQuestion.rendered = function () {
-    token = Router.current().params.token;
     Meteor.subscribe('studentLesson', token);
-    /*
-     Meteor.call("sendActiveQuestion", token, (error, response) => {
-     if (error) {
-     console.log(error);
-     } else {
-     console.log("Response: " + JSON.stringify(response.answers));
-     activeQuestion = response.questions[0];
-     activeQuestionDep.changed();
-
-     if (activeQuestion.type === "Open") {
-     var ratings = 0;
-     for (i = 0; i < activeQuestion.answers.length; i++) {
-     answers[i] = [activeQuestion.answers[i].antw, 25];
-     //console.log(answers[i]);
-     ratings += parseInt(activeQuestion.answers[i].rating);
-     }
-     activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
-     console.log(answers);
-     }
-     else if (activeQuestion.type === "MP") {
-     var ratings = 0;
-     for (i = 0; i < activeQuestion.options.length; i++) {
-     chartData[i] = [activeQuestion.options[i].text, 0];
-     aantalPerOption[i] = 0;
-     for (j = 0; j < activeQuestion.answers.length; j++) {
-     if (activeQuestion.options[i].num === parseInt(activeQuestion.answers[j].antw)) {
-     aantalPerOption[i]++;
-     ratings += parseInt(activeQuestion.answers[j].rating);
-     console.log("Vraag " + activeQuestion.options[i].num + ": " + activeQuestion.options[i].text + " komt " + aantalPerOption[i] + " keer voor");
-     }
-     }
-     chartData[i] = [activeQuestion.options[i].text, aantalPerOption[i]];
-     //console.log(chartData[i]);
-     }
-     activeQuestion.rating = Math.round(ratings / activeQuestion.answers.length);
-     //console.log(chartData);
-     }
-     }
-     });
-     */
+    console.log("homeTeacherHubActiveQuestion");
 };
 
 Template.HTHAOpenQuest.rendered = function () {
     if (!wordcloudDiv) {
         wordcloudDiv = document.getElementById("HTHA-open-canvas");
-        updateLesson.changed();
+        console.log("wordcloudDiv exists!");
+        qstDep.changed();
     }
 };
 
