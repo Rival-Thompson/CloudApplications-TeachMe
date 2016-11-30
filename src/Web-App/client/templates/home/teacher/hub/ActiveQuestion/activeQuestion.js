@@ -26,7 +26,7 @@ drawWordCloud = function (drawSpot) {
 };
 
 drawChart = function (drawspot) {
-    let chart = c3.generate({
+    c3.generate({
         bindto: drawspot,
         data: {
             columns: chartData,
@@ -152,49 +152,4 @@ Template.HTHAMPQuest.rendered = function () {
         console.log("chartDiv exists!");
         qstDep.changed();
     }
-
-    let chart = c3.generate({
-        bindto: '#chartMP',
-        data: {
-            columns: [
-                ["opvulling", 10],
-                ["extra", 50],
-            ],
-            type: 'pie',
-            color: {
-                pattern: [
-                    '#ff7f0e', '#ffbb78', '#2ca02c',
-                    '#98df8a', '#d62728', '#ff9896',
-                    '#9467bd', '#c5b0d5', '#8c564b',
-                    '#c49c94', '#e377c2', '#f7b6d2',
-                    '#7f7f7f', '#c7c7c7', '#bcbd22',
-                    '#dbdb8d', '#17becf', '#9edae5']
-            }
-        },
-        pie: {
-            label: {
-                format: function (value) {
-                    return d3.format()(value);
-                }
-            }
-        }
-    });
-
-    setTimeout(function () {
-        chart.unload({
-            ids: 'opvulling'
-        });
-    }, 2000);
-
-    setTimeout(function () {
-        chart.unload({
-            ids: 'extra'
-        });
-    }, 1000);
-
-    setTimeout(function () {
-        chart.load({
-            columns: chartData
-        });
-    }, 1500);
 };
