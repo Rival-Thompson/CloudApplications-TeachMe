@@ -2,11 +2,12 @@ Meteor.subscribe('user');
 
 let activeQuestion = null;
 let answers = [];
-//let aantalPerOption = [];
+let aantalPerOption = [];
 let chartData = [];
 let token;
 let currentActiveLesson;
 let wordcloudDiv;
+let chartDiv;
 let ratingDep = new Tracker.Dependency;
 let rating;
 let qstDep = new Tracker.Dependency;
@@ -24,6 +25,33 @@ drawWordCloud = function (drawSpot) {
     });
 };
 
+drawChart = function (drawspot) {
+    let chart = c3.generate({
+        bindto: drawspot,
+        data: {
+            columns: chartData,
+            type: 'pie',
+            color: {
+                pattern: [
+                    '#ff7f0e', '#ffbb78', '#2ca02c',
+                    '#98df8a', '#d62728', '#ff9896',
+                    '#9467bd', '#c5b0d5', '#8c564b',
+                    '#c49c94', '#e377c2', '#f7b6d2',
+                    '#7f7f7f', '#c7c7c7', '#bcbd22',
+                    '#dbdb8d', '#17becf', '#9edae5'
+                ]
+            }
+        },
+        pie: {
+            label: {
+                format: function (value) {
+                    return d3.format()(value);
+                }
+            }
+        }
+    });
+};
+
 updateData = function (activeqst) {
     if (activeqst.type === "Open") {
         let ratings = 0;
@@ -38,7 +66,29 @@ updateData = function (activeqst) {
 
             qstActive = activeqst;
             qstDep.changed();
+        } else console.log("No answers yet");
+    } else if (activeqst.type === "MP") {
+        let ratings = 0;
+        if (activeqst.answers) {
+            for (let i = 0; i < activeqst.options.length; i++) {
+                chartData[i] = [activeqst.options[i].text, 0];
+                aantalPerOption[i] = 0;
+                for (let j = 0; j < activeqst.answers.length; j++) {
+                    if (activeqst.options[i].num === parseInt(activeqst.answers[j].antw)) {
+                        aantalPerOption[i]++;
+                        ratings += parseInt(activeqst.answers[j].rating);
+                        //console.log("Option " + activeqst.options[i].num + ": " + activeqst.options[i].text + " komt " + aantalPerOption[i] + " keer voor");
+                    }
+                }
+                chartData[i] = [activeqst.options[i].text, aantalPerOption[i]];
+                //console.log(chartData[i]);
+            }
+            rating = Math.round(ratings / activeqst.answers.length);
+            ratingDep.changed();
+            console.log(rating);
 
+            qstActive = activeqst;
+            qstDep.changed();
         } else console.log("No answers yet");
     }
 };
@@ -46,7 +96,7 @@ updateData = function (activeqst) {
 Template.homeTeacherHubActiveQuestion.helpers({
     thisLesson: function () {
         console.log("thisLesson");
-        if(!token) {
+        if (!token) {
             token = Router.current().params.token;
             console.log(token);
         }
@@ -71,6 +121,9 @@ Template.homeTeacherHubActiveQuestion.helpers({
         if (!!wordcloudDiv && qstActive.type == "Open")
             drawWordCloud(wordcloudDiv);
 
+        else if (!!chartDiv && qstActive.type == "MP")
+            drawChart(chartDiv);
+
         return qstActive;
     },
     getRating: function () {
@@ -94,10 +147,15 @@ Template.HTHAOpenQuest.rendered = function () {
 };
 
 Template.HTHAMPQuest.rendered = function () {
-    var chart = c3.generate({
+    if (!chartDiv) {
+        chartDiv = document.getElementById("chartMP");
+        console.log("chartDiv exists!");
+        qstDep.changed();
+    }
+
+    let chart = c3.generate({
         bindto: '#chartMP',
         data: {
-            // iris data from R
             columns: [
                 ["opvulling", 10],
                 ["extra", 50],
@@ -139,5 +197,4 @@ Template.HTHAMPQuest.rendered = function () {
             columns: chartData
         });
     }, 1500);
-
 };
