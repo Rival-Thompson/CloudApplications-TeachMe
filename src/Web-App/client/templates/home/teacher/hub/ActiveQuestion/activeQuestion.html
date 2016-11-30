@@ -12,6 +12,9 @@
                 {{#if zelfde thisActiveQuestion.type "MP"}}
                     {{>HTHAMPQuest}}
                 {{/if}}
+                {{#if zelfde thisActiveQuestion.type "Code"}}
+                    {{>HTHACodeQuest}}
+                {{/if}}
             </div>
             <h4><b>{{getRating}}</b></h4>
         </div>

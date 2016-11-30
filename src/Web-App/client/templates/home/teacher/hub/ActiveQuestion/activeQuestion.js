@@ -8,6 +8,7 @@ let token;
 let currentActiveLesson;
 let wordcloudDiv;
 let chartDiv;
+let codeDiv;
 let ratingDep = new Tracker.Dependency;
 let rating;
 let qstDep = new Tracker.Dependency;
@@ -149,6 +150,14 @@ Template.HTHAOpenQuest.rendered = function () {
 Template.HTHAMPQuest.rendered = function () {
     if (!chartDiv) {
         chartDiv = document.getElementById("chartMP");
+        console.log("chartDiv exists!");
+        qstDep.changed();
+    }
+};
+
+Template.HTHACodeQuest.rendered = function () {
+    if (!codeDiv){
+        codeDiv = document.getElementById("HTHA-Code");
         console.log("chartDiv exists!");
         qstDep.changed();
     }
