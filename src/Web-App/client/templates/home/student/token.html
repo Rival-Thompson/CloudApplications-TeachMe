@@ -1,14 +1,29 @@
 <template name="homeStudentToken">
-    <div class="studentToken centered">
-        <h1 class="banner"> Teach-Me</h1>
-        <h2 class="subBanner">Student</h2>
-        <div class="spacing"></div>
-        <form class="studentTokenForm">
-            <div class="form-group">
-                <input autofocus type="text" placeholder="Enter Token" class="form-group-lg inputToken" id="HS_token" name="studentInputToken" style="text-transform:uppercase" onkeypress="javascript:this.value=this.value.toUpperCase();">
-                <input type="button" class="buttonJoin" value="Join Course">
-                <a  href="{{pathFor "homeIndex"}}" class="button btn-default btn buttonBack">Back</a>
+    <div class="studentToken">
+        <div  style="text-align: center; width: 100%">
+            <div class="block">
+                <div class="container-fluid"></div>
+                <h1 class="banner text-green2">Teach Me</h1>
+                <h2 class="subBanner">Student</h2>
+                <hr>
+                <form class="studentTokenForm">
+                    <div class="container-fluid">
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="token-addon1" >
+                                <i class="fa fa-key" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input autofocus type="text" aria-hidden="true" aria-describedby="token-addon1" placeholder="A1-A1-A1" class="form-group-lg form-control inputToken" id="HS_token" name="studentInputToken" style="text-transform:uppercase" onkeypress="javascript:this.value=this.value.toUpperCase();">
+                        </div>
+
+                        <button type="button" class="btn btn-green1 buttonJoin col-sm-12 col-xs-12" > <i class="fa fa-sign-in" aria-hidden="true" style="text-align: center; width: 1.2em"></i> Join Course</button>
+
+                    </div>
+                </form>
+                <hr>
+                <div class="container-fluid">
+                    <a  href="{{pathFor "homeIndex"}}" class="button btn-default btn buttonBack col-sm-12 col-xs-12">Back</a>
+                </div>
             </div>
-        </form>
+        </div>
     </div>
 </template>
