@@ -29,8 +29,37 @@
     max-width: 50em
 }
 .teacherLogin {
-    margin-top: -10em;
+    margin-top: 5em;
 }
 .teacherLogin .button{
     min-width: 112px;
+}
+
+@media only screen and (max-width: 730px){
+    .teacherLogin {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .teacherLogin .block{
+        padding: 0;
+        padding-top: 5%;
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .teacherLogin h1 {
+        font-size: 5em;
+    }
+}
+@media only screen and (max-width: 310px) {
+    .teacherLogin h1 {
+        font-size: 4em;
+    }
 }
