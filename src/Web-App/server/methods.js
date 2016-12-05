@@ -32,6 +32,9 @@ Meteor.methods({
     },
     removeAnswers(param){
         return Lessons.update({_id: param._id, "questions.num": param.num}, {$unset: {"questions.$.answers": 1}});
+    },
+    deleteLesson(param) {
+        return Lessons.remove({token: param.token});
     }
 });
 

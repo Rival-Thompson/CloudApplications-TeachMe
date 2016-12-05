@@ -13,10 +13,13 @@
                     {{>HTHAMPQuest}}
                 {{/if}}
                 {{#if zelfde thisActiveQuestion.type "Code"}}
-                    {{>HTHACodeQuest}}
+                    {{>HTHACodeQuest thisActiveQuestion=thisActiveQuestion}}
                 {{/if}}
             </div>
             <h4><b>{{getRating}}</b></h4>
         </div>
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
     </div>
 </template>

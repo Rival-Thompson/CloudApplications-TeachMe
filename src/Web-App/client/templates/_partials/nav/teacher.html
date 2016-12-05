@@ -24,7 +24,7 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-2">
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
-                    <li><button class="btn btn-danger navbar-btn">EndLesson</button></li>
+                    <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
                     {{/if}}
                     {{#if not thisLesson}}
                         <li><button class="btn btn-success navbar-btn">StartLesson{{LessonName}}</button></li>

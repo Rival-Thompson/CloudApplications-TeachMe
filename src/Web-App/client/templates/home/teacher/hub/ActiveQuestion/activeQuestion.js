@@ -8,11 +8,12 @@ let token;
 let currentActiveLesson;
 let wordcloudDiv;
 let chartDiv;
-let codeDiv;
 let ratingDep = new Tracker.Dependency;
 let rating;
 let qstDep = new Tracker.Dependency;
 let qstActive;
+let endButton = false;
+let endButtonDep = new Tracker.Dependency;
 
 drawWordCloud = function (drawSpot) {
     console.log("Draw this");
@@ -91,7 +92,25 @@ updateData = function (activeqst) {
             qstActive = activeqst;
             qstDep.changed();
         } else console.log("No answers yet");
+    } else if (activeqst.type === "Code") {
+        let ratings = 0;
+        if (activeqst.answers) {
+            for (i = 0; i < activeqst.answers.length; i++) {
+                ratings += parseInt(activeqst.answers[i].rating);
+            }
+            rating = Math.round(ratings / activeqst.answers.length);
+            ratingDep.changed();
+            console.log(rating);
+
+            qstActive = activeqst;
+            qstDep.changed();
+        } else console.log("No answers yet");
     }
+};
+
+hidePopUp = function () {
+    endButton = false;
+    endButtonDep.changed();
 };
 
 Template.homeTeacherHubActiveQuestion.helpers({
@@ -131,7 +150,13 @@ Template.homeTeacherHubActiveQuestion.helpers({
         console.log("getRating");
         ratingDep.depend();
         return rating;
-    }
+    },
+    showEndLessonPopup: function () {
+        endButtonDep.depend();
+        console.log("endbutton: " + endButton);
+        return endButton;
+    },
+
 });
 
 Template.homeTeacherHubActiveQuestion.rendered = function () {
@@ -155,10 +180,44 @@ Template.HTHAMPQuest.rendered = function () {
     }
 };
 
-Template.HTHACodeQuest.rendered = function () {
-    if (!codeDiv){
-        codeDiv = document.getElementById("HTHA-Code");
-        console.log("chartDiv exists!");
-        qstDep.changed();
+Template.navSignin.rendered = function () {
+    if (!endButton) {
+        console.log("navbar");
+        endButton = false;
+        endButtonDep.changed();
     }
 };
+
+Template.navSignin.events({
+    "click #endLessonBtn"(event){
+        if (!endButton) endButton = true;
+        endButtonDep.changed();
+
+    }
+});
+
+Template.popupEndLesson.events({
+    "click #HTH_endSave"(event){
+        hidePopUp();
+        sAlert.success("Lesson saved!", {onRouteClose: false});
+        Router.go("homeTeacherDashboard");
+    },
+    "click #HTH_endDelete"(event){
+        if (!!currentActiveLesson) {
+            Meteor.call("deleteLesson", {token:currentActiveLesson.token}, (error, response) => {
+                if (error){
+                    sAlert.error(error.message);
+                    hidePopUp();
+                }
+                else {
+                    hidePopUp();
+                    sAlert.success("Lesson removed!", {onRouteClose: false});
+                    Router.go("homeTeacherDashboard");
+                }
+            });
+        } else sAlert.error("U bricked it!")
+    },
+    "click #HTH_endCancel"(event){
+        hidePopUp();
+    }
+});
