@@ -86,20 +86,6 @@ html,body{
     padding-right: 0;
 }
 
-.loader {
-    border: 4em solid var(--backgroudncolor-light); /* Light grey */
-    border-top: 4em solid var(--color-green-buttons); /* Blue */
-    border-bottom: 4em solid var(--color-green-buttons);
-    border-radius: 50%;
-    width: 10em;
-    height: 10em;
-    animation: spin 2s linear infinite;
-}
-
-@keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-}
 
 
 .clearfix:after {

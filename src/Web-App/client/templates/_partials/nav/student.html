@@ -20,16 +20,15 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
             {{#if thisLesson}}
                     <ul class="nav navbar-nav navbar-left">
-                        <li><p class="navbar-text">Lesson:{{thisLesson.name}}</p></li>
-                        <li><p class="navbar-text">Subject:{{thisLesson.subject}}</p></li>
+                        <li class="" ><p class="navbar-text" >Lesson: {{thisLesson.name}}</p></li>
                     </ul>
             {{/if}}
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
-                        <li><button class="btn btn-danger navbar-btn" id="ENDLESSON">EndLesson</button></li>
+                        <li><button class="btn btn-danger navbar-btn" id="ENDLESSON">LeaveLesson</button></li>
                     {{/if}}
                     {{#if not thisLesson}}
-                        <li><button class="btn btn-success navbar-btn">StartLesson{{thisLesson.name}}</button></li>
+                        <li><button class="btn btn-warning navbar-btn">This Lesson isn't active</button></li>
                     {{/if}}
                 </ul>
             </div>

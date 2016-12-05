@@ -1,0 +1,110 @@
+@import "../../colors";
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+.outerContainer{
+  margin: 0;
+  padding: 0;
+  padding-top: 6em;
+  background: transparentize($color-richBlack,0.8);
+  width: 100%;
+  min-height: 100vh;
+  height: 100%;
+  position: absolute;
+  top: 0;
+}
+
+.question{
+  text-align: center;
+  font-size: 3em;
+  font-weight: 700;
+  color: $color-student-Accent1;
+}
+
+.HSL_NoQuestion{
+    @extend .outerContainer;
+    .centeredBlock{
+        width: 80%;
+        text-align: center;
+    }
+    .loader{
+        margin: auto;
+        border: 4em solid $color-richBlack; /* Light grey */
+        border-top: 4em solid $color-student-Accent2; /* Blue */
+        border-bottom: 4em solid $color-student-Accent2;
+        border-radius: 50%;
+        width: 10em;
+        height: 10em;
+        animation: spin 2s linear infinite;
+    }
+    h2{
+        color: $color-student-Accent1;
+        font-size: 4em;
+        margin-bottom: 2em;
+    }
+    @media only screen and (max-width: 1150px) {
+        h2{
+            font-size: 3.5em;
+        }
+    }
+    @media only screen and (max-width: 1010px) {
+        h2{
+            font-size: 3em;
+        }
+    }
+}
+
+.HSL-OpenQuestion{
+  @extend .outerContainer;
+  .HSL-Open-Input{
+    resize: none;
+    width: 100%;
+    max-width: 85%;
+    min-width: 85%;
+    height: 20vh;
+    background: transparentize(darken($color-student-Accent1,31),0.8);
+  }
+
+
+}
+
+@media only screen and (max-width: 730px){
+  .outerContainer{
+    overflow: hidden;
+    overflow-wrap: normal;
+
+  }
+  .HSL-Open-Input{
+    height: 30vh;
+  }
+}
+
+@media only screen and (max-height: 550px){
+  .outerContainer{
+    overflow: auto;
+    overflow-wrap: normal;
+
+  }
+  .HSL-Open-Input{
+    height: 30vh;
+  }
+
+}
+
+
+@media only screen and (max-height: 200px) {
+  .HSL-Open-Input:active, .HSL-Open-Input:focus {
+    height: 100vh;
+    max-width: 100vw;
+    padding: 0 3em;
+    position: fixed;
+    top:0;
+    left: 0;
+    z-index: 100000;
+    background: darken($color-student-Accent1,31);
+    color: #cdcdcd;
+
+  }
+}
