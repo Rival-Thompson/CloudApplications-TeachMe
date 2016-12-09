@@ -1,32 +1,29 @@
 <template name="HSL_MPQuestion">
-    <h3 class="question"> {{qst.question}}</h3>
-    <div>
-        <div style="width: 100%;display: block; text-align: center;">
-            <form action="" class="answerForm">
-                <ul>
-                    {{#each option in qst.options}}
+    <div class="HSL_MPQuestion">
+        <h3 class="question"> {{qst.question}}</h3>
+        <div style="text-align: center;">
+            <div style="width: 100%;display: inline-block;">
+                <form action="" class="answerForm">
+                    <ul class="rbtnHolder">
+                        {{#each option in qst.options}}
+                            <li class="rbtn">
+                                <input type="radio" name="mp" id="HSL_RB_{{option.num}}" value="{{option.num}}" >
+                                <label class="RadioButtons" for="HSL_RB_{{option.num}}">
+                                    {{option.text}}
+                                </label>
+                                <div class="check"></div>
+                            </li>
 
-                        <li>
-                            <input type="radio" name="mp" id="HSL_RB_{{option.num}}" value="{{option.num}}" >
-                            <label class="RadioButtons" for="HSL_RB_{{option.num}}">
-                                {{option.text}}
-                            </label>
-                            <div class="check"></div>
-                        </li>
+                        {{/each}}
 
-                        <div class="clearfix" style="clear: both;width: 100%"></div>
+                    </ul>
+                </form>
+            </div>
 
-                    {{/each}}
-
-                </ul>
-            </form>
         </div>
-
+        {{>HSl_Rating}}
+        <div style="text-align: center; width: 100%; margin-bottom: 3em">
+            <button type="button" id="HSL_SaveMPAnswer" class="button btn btn-green1">Submit</button>
+        </div>
     </div>
-    {{>HSl_Rating}}
-    <div style="text-align: center; width: 100%">
-        <button type="button" id="HSL_SaveMPAnswer" class="button btn btn-primary">Submit</button>
-    </div>
-
-
 </template>

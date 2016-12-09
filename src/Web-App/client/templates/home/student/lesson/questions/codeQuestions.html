@@ -1,18 +1,20 @@
 <template name="HSL_CodeQuestion">
-    <h3 class="question">{{qst.question}}</h3>
-<div style="width: 100%; text-align: center">
-    <div style="width: 80%; display: inline-block">
-        <div id="editor2" style="display: inline-block ;width: 49%; height: 55vh;margin: 0; padding: 0;">
+    <div class="HSL_CodeQuestion">
+        <h3 class="question">{{qst.question}}</h3>
+        <div style="width: 100%; text-align: center" class="container-fluid">
+            <div class="Container-Editor">
+                <div id="editor2" class="Editor">
+                </div>
+                <div id="editor" class="Editor">
+                </div>
+            </div>
         </div>
-        <div id="editor" style="display: inline-block ;width: 49%; height: 55vh;margin: 0; padding: 0;">
+        {{>HSl_Rating}}
+        <div style="text-align: center; width: 100%; margin-bottom: 3em">
+            <button type="button" id="HSL_SaveCodeAnswer" class="button btn btn-green1">Submit</button>
         </div>
     </div>
-</div>
-    <div style="margin-bottom: -5em"></div>
-    {{>HSl_Rating}}
-    <div style="text-align: center; width: 100%; margin-bottom: 3em">
-        <button type="button" id="HSL_SaveCodeAnswer" class="button btn btn-primary">Submit</button>
-    </div>
+
 
 
 </template>
