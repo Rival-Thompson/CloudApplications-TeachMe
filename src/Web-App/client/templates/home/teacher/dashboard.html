@@ -1,6 +1,12 @@
 <template name="homeTeacherDashboard">
-    {{>navSignin}}
-    <div class="TeacherCreateLesson">
-        {{>homeTeacherCreateLesson}}
+    <div class="HTD teacherSide ">
+        {{>navTeacherDash user = user}}
+        <div class="outerContainer">
+            <div class="TeacherCreateLesson col-md-5 col-sm-12 col-xs-12">
+                {{>homeTeacherCreateLesson}}
+            </div>
+        </div>
+
     </div>
+
 </template>

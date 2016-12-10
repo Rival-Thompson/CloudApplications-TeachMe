@@ -1,0 +1,89 @@
+@import "../../colors";
+
+$bgColor: #303030;
+$highlightColor: $color-student-Accent1;
+$mainTextColor: white;
+$hoverColor: $color-teacher-Accent2;
+
+
+.teacherSide {
+  .navbar-default {
+    background-color: $bgColor;
+    border-color: $bgColor;
+
+    #btnProfile :nth-child(2){
+      display: none;
+    }
+    #btnProfile:hover :nth-child(2){
+      display: inline;
+    }
+
+    .navbar-text {
+      color: $highlightColor;
+      font-size: 1.2em;
+      font-weight: bold;
+    }
+
+    .navbar-brand {
+      color:$mainTextColor;
+    }
+
+    .navbar-brand:hover, .navbar-brand:focus {
+      color: $hoverColor;
+    }
+    .navbar-nav > li > a {
+      color: $mainTextColor;
+    }
+    .navbar-nav > li > a:hover, .navbar-nav > li > a:focus {
+      color: $hoverColor;
+    }
+    .navbar-nav .active > a,.navbar-nav .active > a:hover,.navbar-nav .active > a:focus {
+      color: $hoverColor;
+      background-color: $highlightColor;
+    }
+    .navbar-nav .open > a,.navbar-nav .open > a:hover,.navbar-nav .open > a:focus {
+      color: $hoverColor;
+      background-color: $highlightColor;
+    }
+    .navbar-nav .open > a .caret, .navbar-nav .open > a:hover .caret,.navbar-nav .open > a:focus .caret {
+      border-top-color: $hoverColor;
+      border-bottom-color: $hoverColor;
+    }
+    .navbar-nav > .dropdown > a .caret {
+      border-top-color: $mainTextColor;
+      border-bottom-color: $mainTextColor;
+    }
+    .navbar-nav > .dropdown > a:hover .caret, .navbar-nav > .dropdown > a:focus .caret {
+      border-top-color: $hoverColor;
+      border-bottom-color: $hoverColor;
+    }
+    .navbar-toggle {
+      border-color: $highlightColor;
+      .icon-bar {
+        background-color: $highlightColor;
+      }
+
+    }
+    .navbar-toggle:hover, .navbar-toggle:focus {
+      background-color: $highlightColor;
+      .icon-bar {
+        background-color: $bgColor;
+      }
+    }
+
+
+    @media (max-width: 767px) {
+      .navbar-nav .open .dropdown-menu > li > a {
+        color: $mainTextColor;
+      }
+
+      .navbar-nav .open .dropdown-menu > li > a:hover, .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+        color: $hoverColor;
+        background-color: $highlightColor;
+      }
+    }
+
+  }
+
+}
+

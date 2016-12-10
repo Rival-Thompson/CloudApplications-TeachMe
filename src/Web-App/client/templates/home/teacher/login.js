@@ -34,7 +34,7 @@ Template.homeTeacherLogin.events({
         event.preventDefault();
         Meteor.loginWithFacebook(function(err){
             if(!err) {
-                alert("Facebook successful!");
+                sAlert.success("Facebook login successful!",{onRouteClose: false});
                 Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
             }
@@ -45,10 +45,16 @@ Template.homeTeacherLogin.events({
         event.preventDefault();
         Meteor.loginWithGoogle(function(err){
             if(!err) {
-                alert("Google successful!");
+                sAlert.success("Google login successful!",{onRouteClose: false});
                 Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
             }
         });
     }
+});
+
+Template.homeTeacherLogin.onCreated(function () {
+    /*if(Meteor.user() != null && Meteor.user() != undefined){
+        Meteor.logout();
+    }*/
 });
