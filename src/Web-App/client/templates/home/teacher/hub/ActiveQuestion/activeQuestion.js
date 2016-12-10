@@ -4,7 +4,7 @@ let activeQuestion = null;
 let answers = [];
 let aantalPerOption = [];
 let chartData = [];
-let token;
+let tokenActive = null;
 let currentActiveLesson;
 let wordcloudDiv;
 let chartDiv;
@@ -17,14 +17,16 @@ let endButtonDep = new Tracker.Dependency;
 
 drawWordCloud = function (drawSpot) {
     console.log("Draw this");
-    WordCloud(drawSpot, {
-        list: answers,
-        backgroundColor: "transparent",
-        wait: 250,
-        gridSize: 15,
-        fontWeight: "bold",
-        shuffle: true
-    });
+    if (!!answers) {
+        WordCloud(drawSpot, {
+            list: answers,
+            backgroundColor: "transparent",
+            wait: 250,
+            gridSize: 15,
+            fontWeight: "bold",
+            shuffle: true
+        });
+    }
 };
 
 drawChart = function (drawspot) {
@@ -65,9 +67,6 @@ updateData = function (activeqst) {
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
             console.log(rating);
-
-            qstActive = activeqst;
-            qstDep.changed();
         } else console.log("No answers yet");
     } else if (activeqst.type === "MP") {
         let ratings = 0;
@@ -88,9 +87,6 @@ updateData = function (activeqst) {
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
             console.log(rating);
-
-            qstActive = activeqst;
-            qstDep.changed();
         } else console.log("No answers yet");
     } else if (activeqst.type === "Code") {
         let ratings = 0;
@@ -101,11 +97,10 @@ updateData = function (activeqst) {
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
             console.log(rating);
-
-            qstActive = activeqst;
-            qstDep.changed();
         } else console.log("No answers yet");
     }
+    qstActive = activeqst;
+    qstDep.changed();
 };
 
 hidePopUp = function () {
@@ -115,13 +110,14 @@ hidePopUp = function () {
 
 Template.homeTeacherHubActiveQuestion.helpers({
     thisLesson: function () {
-        console.log("thisLesson");
-        if (!token) {
-            token = Router.current().params.token;
-            console.log(token);
+        //console.log("thisLesson");
+        tokenActive = null;
+        if (tokenActive == null || tokenActive == undefined) {
+            tokenActive = Router.current().params.token;
+            console.log(tokenActive+ " newly asked");
         }
-
-        currentActiveLesson = Lessons.findOne({token: token});
+        console.log(tokenActive);
+        currentActiveLesson = Lessons.findOne({token: tokenActive});
         console.log(currentActiveLesson);
         if (!!currentActiveLesson) {
             currentActiveLesson.questions.forEach(function (qst, index) {
@@ -135,7 +131,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
         return currentActiveLesson;
     },
     thisActiveQuestion: function () {
-        console.log("thisActiveQuestion");
+        //console.log("thisActiveQuestion");
         qstDep.depend();
 
         if (!!wordcloudDiv && qstActive.type == "Open")
@@ -147,7 +143,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
         return qstActive;
     },
     getRating: function () {
-        console.log("getRating");
+        //console.log("getRating");
         ratingDep.depend();
         return rating;
     },
@@ -160,14 +156,14 @@ Template.homeTeacherHubActiveQuestion.helpers({
 });
 
 Template.homeTeacherHubActiveQuestion.rendered = function () {
-    Meteor.subscribe('studentLesson', token);
-    console.log("homeTeacherHubActiveQuestion");
+    Meteor.subscribe('studentLesson', tokenActive);
+    //console.log("homeTeacherHubActiveQuestion");
 };
 
 Template.HTHAOpenQuest.rendered = function () {
     if (!wordcloudDiv) {
         wordcloudDiv = document.getElementById("HTHA-open-canvas");
-        console.log("wordcloudDiv exists!");
+        //console.log("wordcloudDiv exists!");
         qstDep.changed();
     }
 };
@@ -175,7 +171,7 @@ Template.HTHAOpenQuest.rendered = function () {
 Template.HTHAMPQuest.rendered = function () {
     if (!chartDiv) {
         chartDiv = document.getElementById("chartMP");
-        console.log("chartDiv exists!");
+        //console.log("chartDiv exists!");
         qstDep.changed();
     }
 };
@@ -192,13 +188,13 @@ Template.navSignin.events({
     "click #endLessonBtn"(event){
         if (!endButton) endButton = true;
         endButtonDep.changed();
-
     }
 });
 
 Template.popupEndLesson.events({
     "click #HTH_endSave"(event){
         hidePopUp();
+        tokenActive = currentActiveLesson = qstActive  = rating = null;
         sAlert.success("Lesson saved!", {onRouteClose: false});
         Router.go("homeTeacherDashboard");
     },
@@ -211,11 +207,13 @@ Template.popupEndLesson.events({
                 }
                 else {
                     hidePopUp();
+                    tokenActive = currentActiveLesson = qstActive = rating = null;
+
                     sAlert.success("Lesson removed!", {onRouteClose: false});
                     Router.go("homeTeacherDashboard");
                 }
             });
-        } else sAlert.error("U bricked it!")
+        } else sAlert.error("U bricked it!");
     },
     "click #HTH_endCancel"(event){
         hidePopUp();
