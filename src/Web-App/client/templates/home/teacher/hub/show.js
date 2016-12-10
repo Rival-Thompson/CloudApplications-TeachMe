@@ -144,8 +144,9 @@ Template.homeTeacherHub.events({
         lessonDep.changed();
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     },
-    "click #HTH_AskQuest"(event) {
+    "click #HTH_AskQuest"(event, template) {
         console.log(selected.num);
+        saveQuestions(template);
         Lessons.update({_id: lesson._id}, {$set: {activequestion: selected.num}});
         Router.go("homeTeacherHubActiveQuestion", {token: lesson.token, activeNum: selected.num});
     },
@@ -189,7 +190,7 @@ Template.homeTeacherHub.helpers({
 
 Template.homeTeacherHub.rendered = function () {
     Meteor.subscribe('lessons');
-    var token = Router.current().params.token;
+    let token = Router.current().params.token;
     //console.log(token);
     Meteor.call("sendLesson", token, (error, response)=> {
         if (error) {

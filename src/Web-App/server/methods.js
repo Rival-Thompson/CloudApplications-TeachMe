@@ -28,10 +28,13 @@ Meteor.methods({
         var tempNum = Lessons.findOne({"token": token}).activequestion;
 
         console.log(Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}}));
-        return Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}});
+        return Lessons.findOne({"token": token, "questions.num": tempNum}, {fields: {"questions.$": 1}}).questions[0];
     },
-    removeAnswers(id, num){
-        return Lessons.update({_id: id, "questions.num": num}, {$pull: {"questions.$.answers": []}});
+    removeAnswers(param){
+        return Lessons.update({_id: param._id, "questions.num": param.num}, {$unset: {"questions.$.answers": 1}});
+    },
+    deleteLesson(param) {
+        return Lessons.remove({token: param.token});
     }
 });
 

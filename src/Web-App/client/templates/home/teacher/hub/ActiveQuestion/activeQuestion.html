@@ -1,6 +1,6 @@
 <template name="homeTeacherHubActiveQuestion">
     <div class="teacherHubActiveQuestion" style="height: 100%;">
-        {{>navSignin}}
+        {{>navSignin thisLesson = thisLesson}}
         <div class="HTH_ActiveQuestion centered" style="max-height: 80%; width: 80%; overflow: auto; text-align: center">
             <h3 style="font-size: 4em; font-weight: bolder; text-align: center;">
                 {{thisActiveQuestion.question}}
@@ -12,8 +12,14 @@
                 {{#if zelfde thisActiveQuestion.type "MP"}}
                     {{>HTHAMPQuest}}
                 {{/if}}
+                {{#if zelfde thisActiveQuestion.type "Code"}}
+                    {{>HTHACodeQuest thisActiveQuestion=thisActiveQuestion}}
+                {{/if}}
             </div>
-            <h4><b>{{thisActiveQuestion.rating}}</b></h4>
+            <h4><b>{{getRating}}</b></h4>
         </div>
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
     </div>
 </template>
