@@ -1,0 +1,16 @@
+<template name="partialCreateCodeQuestions">
+    <div class="P-OpenQuestion">
+        {{>PquestionSelect selected='CODE' qs = this}}
+        <hr>
+        <div>
+                <textarea id="HTH_QuestExample" class="form-control"  type="text" aria-multiline="true" style="width: 100%; max-width: 100%;  overflow: visible; min-height: 5em">{{this.QuestExample}}</textarea>
+
+        </div>
+
+        <hr style="width: 100%; border: none; border-bottom: solid 1px #eee; padding-top: 20px;">
+        <div>
+            {{>PQuestionButtons}}
+        </div>
+    </div>
+
+</template>

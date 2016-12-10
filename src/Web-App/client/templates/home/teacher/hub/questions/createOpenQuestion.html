@@ -1,0 +1,35 @@
+<template name="partialCreateOpenQuestions">
+    <div class="P-OpenQuestion">
+        {{>PquestionSelect selected='OPEN' qs = this}}
+        <hr>
+        {{>PQuestionButtons}}
+    </div>
+
+</template>
+
+<template name="PquestionSelect">
+    <div class="input-group" style="width: 100%;">
+        <span class="input-group-addon" > {{qs.num}}: </span>
+        <select class="input-group-addon form-control" id="HTH_SelectType" style="display: inline;">
+            <option value="Open" selected="{{#if zelfde selected 'OPEN'}} selected {{/if}}">Open</option>
+            <option value="MP" selected="{{#if zelfde selected 'MP'}} selected {{/if}}" >Multiplechoice</option>
+            <option value="Code" selected="{{#if zelfde selected 'CODE'}} selected {{/if}}">Code</option>
+        </select>
+        <input type="text" name="question" placeholder="question" value="{{qs.question}}"  id="HTH_InputQuestion" class="form-control">
+    </div>
+</template>
+<template name="PQuestionButtons">
+    <div class="container-fluid" style="margin: 0;padding: 0;">
+        <div>
+            <input class="btn btn-warning col-xs-12 col-lg-6" type="button" value="Remove Answers" id="HTH_RemoveAnswers">
+        </div>
+        <hr style="width: 100%; border: none; border-bottom: solid 1px #eee; padding-top: 20px;">
+        <div>
+            <input class="btn btn-success col-xs-4 col-lg-2" type="button" value="ask" id="HTH_AskQuest">
+            <input class="btn btn-primary col-xs-4 col-lg-2" type="button" value="save" id="HTH_SaveQuest">
+            <input class="btn btn-danger col-xs-4 col-lg-2" type="button" value="delete" id="HTH_DeleteQuest">
+        </div>
+    </div>
+
+
+</template>
