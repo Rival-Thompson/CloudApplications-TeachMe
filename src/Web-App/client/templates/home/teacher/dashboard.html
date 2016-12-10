@@ -2,9 +2,16 @@
     <div class="HTD teacherSide ">
         {{>navTeacherDash user = user}}
         <div class="outerContainer">
+            <div class="TeacherOverviewLesson col-md-5 col-sm-12 col-xs-12">
+                {{>homeTeacherOverviewLesson}}
+            </div>
+            <div class="col-md-2 col-sm-12 col-xs-12">
+                <hr>
+            </div>
             <div class="TeacherCreateLesson col-md-5 col-sm-12 col-xs-12">
                 {{>homeTeacherCreateLesson}}
             </div>
+
         </div>
 
     </div>
