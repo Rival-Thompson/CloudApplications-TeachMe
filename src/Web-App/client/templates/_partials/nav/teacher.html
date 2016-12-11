@@ -50,8 +50,10 @@
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
-                        <li><button class="btn btn-blue1 navbar-btn" onclick="history.back();">Back to hub</button></li>
+                        <li><button id="hubBtn" class="btn btn-info navbar-btn" href="{{pathFor "homeTeacherHub" token=thisLesson.token}}" onclick="/*history.back();*/">Back to hub</button></li>
                         <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
+                        {{else}}
+                        <li><button class="btn btn-info navbar-btn" onclick="history.back();">Back</button></li>
                     {{/if}}
                 </ul>
             </div>

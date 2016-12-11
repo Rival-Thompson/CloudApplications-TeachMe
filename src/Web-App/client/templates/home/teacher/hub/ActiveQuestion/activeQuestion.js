@@ -130,7 +130,8 @@ updateData = function (activeqst) {
     qstDep.changed();
 };
 
-hidePopUp = function () {
+hidePopUp2 = function () {
+    console.log("hidingPopup")
     endButton = false;
     endButtonDep.changed();
 };
@@ -174,7 +175,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
     },
     showEndLessonPopup: function () {
         endButtonDep.depend();
-        //console.log("endbutton: " + endButton);
+        console.log("endbutton: " + endButton);
         return endButton;
     }
 });
@@ -210,12 +211,15 @@ Template.navTeacherActiveLesson.events({
     "click #endLessonBtn"(event){
         if (!endButton) endButton = true;
         endButtonDep.changed();
+    },
+    "click #hubBtn"(event){
+        Router.go('homeTeacherHub',{token:currentActiveLesson.token});
     }
 });
 
 Template.popupEndLesson.events({
     "click #HTH_endSave"(event){
-        hidePopUp();
+        hidePopUp2();
         clearDataVariables();
         sAlert.success("Lesson saved!", {onRouteClose: false});
         Router.go("homeTeacherDashboard");
@@ -225,10 +229,10 @@ Template.popupEndLesson.events({
             Meteor.call("deleteLesson", {token: currentActiveLesson.token}, (error, response) => {
                 if (error) {
                     sAlert.error(error.message);
-                    hidePopUp();
+                    hidePopUp2();
                 }
                 else {
-                    hidePopUp();
+                    hidePopUp2();
                     clearDataVariables();
 
                     sAlert.success("Lesson removed!", {onRouteClose: false});
@@ -238,6 +242,7 @@ Template.popupEndLesson.events({
         } else sAlert.error("U bricked it!");
     },
     "click #HTH_endCancel"(event){
-        hidePopUp();
+        console.log("canceliing");
+        hidePopUp2();
     }
 });
