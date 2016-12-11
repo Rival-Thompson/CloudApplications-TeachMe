@@ -199,14 +199,14 @@ Template.HTHAMPQuest.rendered = function () {
     }
 };
 
-Template.navSignin.rendered = function () {
+Template.navTeacherActiveLesson.rendered = function () {
     if (!endButton) {
         endButton = false;
         endButtonDep.changed();
     }
 };
 
-Template.navSignin.events({
+Template.navTeacherActiveLesson.events({
     "click #endLessonBtn"(event){
         if (!endButton) endButton = true;
         endButtonDep.changed();

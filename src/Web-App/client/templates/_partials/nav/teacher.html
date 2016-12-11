@@ -1,33 +1,57 @@
-<template name="navSignin">
-    <nav class="navbar navbar-default" style="z-index: 99999;">
-        <div class="container">
+<template name="navTeacherHub">
+    <nav class="navbar navbar-default fullWidth" style="z-index: 99999;">
+        <div class="container-fluid">
             <!-- Brand and toggle get grouped for better mobile display -->
             <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-2">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
                     <span class="sr-only">Toggle navigation</span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <span class="navbar-brand" >TEACH-ME</span>
+                <span  class="navbar-brand" >
+                        <img style="max-height: 100%; margin-top: -2px;display: inline" alt="LOGO of teach me" src="/images/favicon/favicon-96x96.png">
+                        TEACH-ME
+                    </span>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
-            {{#if thisLesson}}
-                <div class="collapse navbar-collapse" id="navbar-collapse-2">
-                    <ul class="nav navbar-nav navbar-left">
-                        <li><a>Lesson:{{thisLesson.name}}</a></li>
-                        <li><a>Subject:{{thisLesson.subject}}</a></li>
-                    </ul>
-                </div><!-- /.navbar-collapse -->
-            {{/if}}
-            <div class="collapse navbar-collapse" id="navbar-collapse-2">
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
-                    <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
+                        <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
                     {{/if}}
-                    {{#if not thisLesson}}
-                        <li><button class="btn btn-success navbar-btn">StartLesson{{LessonName}}</button></li>
+                </ul>
+            </div>
+        </div><!-- /.container -->
+    </nav><!-- /.navbar -->
+</template>
+
+<template name="navTeacherActiveLesson">
+    <nav class="navbar navbar-default fullWidth" style="z-index: 99999;">
+        <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <span  class="navbar-brand" >
+                        <img style="max-height: 100%; margin-top: -2px;display: inline" alt="LOGO of teach me" src="/images/favicon/favicon-96x96.png">
+                        TEACH-ME
+                    </span>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+            <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    {{#if thisLesson}}
+                        <li><button class="btn btn-blue1 navbar-btn" onclick="history.back();">Back to hub</button></li>
+                        <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
                     {{/if}}
                 </ul>
             </div>

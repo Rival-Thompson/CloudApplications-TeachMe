@@ -225,14 +225,14 @@ Template.homeTeacherHub.rendered = function () {
 };
 
 
-Template.navSignin.rendered = function () {
+Template.navTeacherHub.rendered = function () {
     if (!endButton) {
         endButton = false;
         endButtonDep.changed();
     }
 };
 
-Template.navSignin.events({
+Template.navTeacherHub.events({
     "click #endLessonBtn"(event){
         if (!endButton) endButton = true;
         endButtonDep.changed();
