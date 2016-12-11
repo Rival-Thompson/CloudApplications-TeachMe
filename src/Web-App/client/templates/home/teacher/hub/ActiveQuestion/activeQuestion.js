@@ -23,8 +23,17 @@ drawWordCloud = function (drawSpot) {
             backgroundColor: "transparent",
             wait: 250,
             gridSize: 15,
-            fontWeight: "bold",
-            shuffle: true
+            fontWeight: "700",
+            shuffle: true,
+            color: function () {
+                const rand = Math.floor(Math.random()* 10);
+                if (rand >= 5){
+                    return  '#00B6FF'
+                }else{
+                    return ' #078ec4'
+                }
+            },
+            drawOutOfBound:true
         });
     }
 };
@@ -61,7 +70,22 @@ updateData = function (activeqst) {
         let ratings = 0;
         if (activeqst.answers) {
             for (i = 0; i < activeqst.answers.length; i++) {
-                answers[i] = [activeqst.answers[i].antw, 25];
+                if( activeqst.answers[i].antw.length <= 60){
+                    answers[i] = [activeqst.answers[i].antw, 30];
+                }else if(activeqst.answers[i].antw.length <= 80){
+                    answers[i] = [activeqst.answers[i].antw, 25];
+                }
+                else if(activeqst.answers[i].antw.length <= 100){
+                    answers[i] = [activeqst.answers[i].antw, 21];
+                }
+                else if(activeqst.answers[i].antw.length <= 120){
+                    answers[i] = [activeqst.answers[i].antw, 17];
+                }else{
+                    answers[i] = [activeqst.answers[i].antw, 14];
+                }
+
+
+
                 ratings += parseInt(activeqst.answers[i].rating);
             }
             rating = Math.round(ratings / activeqst.answers.length);

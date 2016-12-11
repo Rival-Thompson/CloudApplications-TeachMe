@@ -1,5 +1,5 @@
 <template name="HTHACodeQuest">
-    <div id="HTHA-Code" class="carousel slide" style="overflow: hidden; width: 100%; height: 50vh" data-ride="carousel">
+    <div id="HTHA-Code" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
             <!-- foreach gebruiken-->
             {{#each answer in thisActiveQuestion.answers}}
@@ -12,7 +12,7 @@
             <!-- more foreach -->
             {{#each answer in thisActiveQuestion.answers}}
                 <div class="item {{#if zelfde @index 0}}active{{/if}}">
-                    <div id="editorAnswer{{@index}}" style="display: inline-block; width: 80%; height: 50vh; font-size: 1.3em">{{answer.antw}}</div>
+                    <div class="EDITOR" id="editorAnswer{{@index}}" style="">{{answer.antw}}</div>
                 </div>
                 <script>
                     var editor{{@index}} = ace.edit("editorAnswer{{@index}}");

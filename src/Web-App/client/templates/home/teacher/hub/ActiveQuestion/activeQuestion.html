@@ -1,22 +1,25 @@
 <template name="homeTeacherHubActiveQuestion">
     <div class="teacherHubActiveQuestion" style="height: 100%;">
         {{>navSignin thisLesson = thisLesson}}
-        <div class="HTH_ActiveQuestion centered" style="max-height: 80%; width: 80%; overflow: auto; text-align: center">
-            <h3 style="font-size: 4em; font-weight: bolder; text-align: center;">
-                {{thisActiveQuestion.question}}
-            </h3>
-            <div id="visualisation" style="height: 60vh">
-                {{#if zelfde thisActiveQuestion.type "Open"}}
-                    {{>HTHAOpenQuest}}
-                {{/if}}
-                {{#if zelfde thisActiveQuestion.type "MP"}}
-                    {{>HTHAMPQuest}}
-                {{/if}}
-                {{#if zelfde thisActiveQuestion.type "Code"}}
-                    {{>HTHACodeQuest thisActiveQuestion=thisActiveQuestion}}
-                {{/if}}
+
+        <div class="outerContainer">
+            <div class="HTH_ActiveQuestion centered">
+                <h3>
+                    {{thisActiveQuestion.question}}
+                </h3>
+                <div id="visualisation" >
+                    {{#if zelfde thisActiveQuestion.type "Open"}}
+                        {{>HTHAOpenQuest}}
+                    {{/if}}
+                    {{#if zelfde thisActiveQuestion.type "MP"}}
+                        {{>HTHAMPQuest}}
+                    {{/if}}
+                    {{#if zelfde thisActiveQuestion.type "Code"}}
+                        {{>HTHACodeQuest thisActiveQuestion=thisActiveQuestion}}
+                    {{/if}}
+                </div>
+                <h4>Average rating: <b>{{getRating}}</b></h4>
             </div>
-            <h4><b>{{getRating}}</b></h4>
         </div>
         {{#if showEndLessonPopup}}
             {{>popupEndLesson}}
