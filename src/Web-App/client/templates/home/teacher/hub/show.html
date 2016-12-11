@@ -1,6 +1,6 @@
 <template name="homeTeacherHub">
-    <div class="teacherHub">
-        {{>navTeacherDash thisLesson = thislesson}}
+    <div class="teacherHub teacherSide">
+        {{>navTeacherHub thisLesson = thislesson}}
         <div class="outerContainer">
             <div class="HTH_Questions centered-hor container-fluid col-xs-12 col-sm-10 col-md-8 col-lg-6"  >
                 <div id="HTH_tabs" class="tabs col-xs-1">
@@ -34,6 +34,8 @@
 
             </div>
         </div>
-
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
     </div>
 </template>
