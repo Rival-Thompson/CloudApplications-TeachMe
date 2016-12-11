@@ -16,7 +16,7 @@ let endButton = false;
 let endButtonDep = new Tracker.Dependency;
 
 drawWordCloud = function (drawSpot) {
-    console.log("Draw this");
+    //console.log("Draw this");
     if (!!answers) {
         WordCloud(drawSpot, {
             list: answers,
@@ -66,9 +66,10 @@ updateData = function (activeqst) {
             }
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
-            console.log(rating);
+            //console.log(rating);
         } else console.log("No answers yet");
-    } else if (activeqst.type === "MP") {
+    }
+    else if (activeqst.type === "MP") {
         let ratings = 0;
         if (activeqst.answers) {
             for (let i = 0; i < activeqst.options.length; i++) {
@@ -86,9 +87,10 @@ updateData = function (activeqst) {
             }
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
-            console.log(rating);
+            //console.log(rating);
         } else console.log("No answers yet");
-    } else if (activeqst.type === "Code") {
+    }
+    else if (activeqst.type === "Code") {
         let ratings = 0;
         if (activeqst.answers) {
             for (i = 0; i < activeqst.answers.length; i++) {
@@ -96,9 +98,10 @@ updateData = function (activeqst) {
             }
             rating = Math.round(ratings / activeqst.answers.length);
             ratingDep.changed();
-            console.log(rating);
+            //console.log(rating);
         } else console.log("No answers yet");
     }
+
     qstActive = activeqst;
     qstDep.changed();
 };
@@ -108,30 +111,29 @@ hidePopUp = function () {
     endButtonDep.changed();
 };
 
+clearDataVariables = function () {
+    // alle vorige variabelen  leegmaken
+    tokenActive = currentActiveLesson = qstActive = rating = wordcloudDiv = chartDiv = null;
+    answers = chartData = aantalPerOption = [];
+};
+
 Template.homeTeacherHubActiveQuestion.helpers({
     thisLesson: function () {
-        //console.log("thisLesson");
         tokenActive = null;
         if (tokenActive == null || tokenActive == undefined) {
             tokenActive = Router.current().params.token;
-            console.log(tokenActive+ " newly asked");
         }
-        console.log(tokenActive);
         currentActiveLesson = Lessons.findOne({token: tokenActive});
-        console.log(currentActiveLesson);
+        //console.log(currentActiveLesson);
         if (!!currentActiveLesson) {
             currentActiveLesson.questions.forEach(function (qst, index) {
-                if (qst.num == currentActiveLesson.activequestion) {
-                    console.log(qst);
-                    updateData(qst)
-                }
+                if (qst.num == currentActiveLesson.activequestion) updateData(qst);
             });
         }
 
         return currentActiveLesson;
     },
     thisActiveQuestion: function () {
-        //console.log("thisActiveQuestion");
         qstDep.depend();
 
         if (!!wordcloudDiv && qstActive.type == "Open")
@@ -143,21 +145,18 @@ Template.homeTeacherHubActiveQuestion.helpers({
         return qstActive;
     },
     getRating: function () {
-        //console.log("getRating");
         ratingDep.depend();
         return rating;
     },
     showEndLessonPopup: function () {
         endButtonDep.depend();
-        console.log("endbutton: " + endButton);
+        //console.log("endbutton: " + endButton);
         return endButton;
-    },
-
+    }
 });
 
 Template.homeTeacherHubActiveQuestion.rendered = function () {
     Meteor.subscribe('studentLesson', tokenActive);
-    //console.log("homeTeacherHubActiveQuestion");
 };
 
 Template.HTHAOpenQuest.rendered = function () {
@@ -178,7 +177,6 @@ Template.HTHAMPQuest.rendered = function () {
 
 Template.navSignin.rendered = function () {
     if (!endButton) {
-        console.log("navbar");
         endButton = false;
         endButtonDep.changed();
     }
@@ -194,20 +192,20 @@ Template.navSignin.events({
 Template.popupEndLesson.events({
     "click #HTH_endSave"(event){
         hidePopUp();
-        tokenActive = currentActiveLesson = qstActive  = rating = null;
+        clearDataVariables();
         sAlert.success("Lesson saved!", {onRouteClose: false});
         Router.go("homeTeacherDashboard");
     },
     "click #HTH_endDelete"(event){
         if (!!currentActiveLesson) {
-            Meteor.call("deleteLesson", {token:currentActiveLesson.token}, (error, response) => {
-                if (error){
+            Meteor.call("deleteLesson", {token: currentActiveLesson.token}, (error, response) => {
+                if (error) {
                     sAlert.error(error.message);
                     hidePopUp();
                 }
                 else {
                     hidePopUp();
-                    tokenActive = currentActiveLesson = qstActive = rating = null;
+                    clearDataVariables();
 
                     sAlert.success("Lesson removed!", {onRouteClose: false});
                     Router.go("homeTeacherDashboard");

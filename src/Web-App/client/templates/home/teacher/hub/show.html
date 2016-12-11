@@ -1,8 +1,8 @@
 <template name="homeTeacherHub">
     <div class="teacherHub" style="height: 100%;">
         {{>navSignin thisLesson = thislesson}}
-        <div class="HTH_Questions centered"  style="max-height: 80%; width: 80%; overflow: auto">
-            <div id="HTH_tabs" class="tabs" style="width: 3em; float: left; margin-top: 1em" >
+        <div class="HTH_Questions centered" style="max-height: 80%; width: 80%; overflow: auto">
+            <div id="HTH_tabs" class="tabs" style="width: 3em; float: left; margin-top: 1em">
                 <ul class="nav nav-pills nav-stacked">
                     {{#each question in thislesson.questions}}
                         <li class="tab {{#if zelfde question.num selectedQuestion.num}}selectedtab{{/if}}">
@@ -32,5 +32,8 @@
             <div style="clear: both; width: 100%"></div>
 
         </div>
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
     </div>
 </template>

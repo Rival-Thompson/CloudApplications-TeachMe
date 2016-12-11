@@ -1,4 +1,3 @@
-
 Meteor.subscribe('user');
 
 
@@ -6,14 +5,19 @@ let lesson = null;
 let lessonDep = new Tracker.Dependency;
 let selected = null;
 let selectedDep = new Tracker.Dependency;
+
 let tabsHeight = $("#HTH_tabs").height() + 50 + "px";
 let tabsHeightDep = new Tracker.Dependency;
 
-Template.registerHelper('zelfde', (a, b)=> {
+let endButton = false;
+let endButtonDep = new Tracker.Dependency;
+
+
+Template.registerHelper('zelfde', (a, b) => {
     return a == b;
 });
 
-Template.registerHelper('not',(a)=>{
+Template.registerHelper('not', (a) => {
     return !a;
 });
 
@@ -21,21 +25,20 @@ saveQuestions = function (template) {
     if (selected) {
         selected.question = template.find('#HTH_InputQuestion').value;
         selected.type = template.find('#HTH_SelectType').value;
-        console.log(selected);
+        //console.log(selected);
         if (selected.type === "MP") {
             selected.options.forEach(function (option, index) {
-                console.log(option);
+                //console.log(option);
                 id = '#HTH_OptionInput' + option.num;
-                var optionText = template.find(id).value;
-                option.text = optionText;
+                option.text = template.find(id).value;
             });
         }
-        if (selected.type === "Code"){
+        if (selected.type === "Code") {
             selected.QuestExample = template.find('#HTH_QuestExample').value;
-            console.log(selected.QuestExample);
+            //console.log(selected.QuestExample);
         }
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
-        console.log("questions saved");
+        //console.log("questions saved");
 
         selectedDep.changed();
     }
@@ -43,17 +46,29 @@ saveQuestions = function (template) {
 
 RemoveOptions = function (selected) {
     delete selected.options;
-    console.log(selected.options);
+    //console.log(selected.options);
+};
+
+hidePopUp = function () {
+    endButton = false;
+    endButtonDep.changed();
+};
+
+clearDataVariables = function () {
+    // alle vorige variabelen  leegmaken
+    lesson = selected = null;
+    tokenActive = currentActiveLesson = qstActive = rating = wordcloudDiv = chartDiv = null;
+    answers = chartData = aantalPerOption = [];
 };
 
 Template.homeTeacherHub.events({
     "click #HTH_AddQuestion"(event){
         lesson.questions.push({type: "Open", question: "new question", num: lesson.questions.length + 1});
         lessonDep.changed();
-        console.log("added question");
+        //console.log("added question");
 
         tabsHeight = $("#HTH_tabs").height() + 100 + "px";
-        console.log(tabsHeight + ": tabheight");
+        //console.log(tabsHeight + ": tabheight");
         tabsHeightDep.changed();
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
 
@@ -62,9 +77,7 @@ Template.homeTeacherHub.events({
     },
     "click .HTH_SelectQuest"(event, template){
         saveQuestions(template);
-        //console.log(event);
-        //console.log(event.currentTarget.innerText);
-        var result = $.grep(lesson.questions, function (e) {
+        let result = $.grep(lesson.questions, function (e) {
             return e.num == event.currentTarget.innerText;
         });
         //console.log(result);
@@ -77,65 +90,58 @@ Template.homeTeacherHub.events({
         saveQuestions(template);
     },
     "click #HTH_OptionAdd"(event){
-        console.log(selected.options);
         selected.options.push({text: "New option", num: selected.options.length});
         selectedDep.changed();
 
         tabsHeight = $("#HTH_tabs").height() + 100 + "px";
-        console.log(tabsHeight + ": tabheight");
         tabsHeightDep.changed();
 
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     },
     "change #HTH_SelectType"(event){
-        var selectType = event.target.value;
-        console.log(selectType);
+        let selectType = event.target.value;
+        //console.log(selectType);
 
-        if (selectType === 'MP'){
-            console.log(selected);
+        if (selectType === 'MP') {
+            //console.log(selected);
             selected.type = "MP";
-            if (selected.options === undefined){
+            if (selected.options === undefined) {
                 selected.options = [];
             }
         }
-        if (selectType === 'Open'){
+        if (selectType === 'Open') {
             selected.type = "Open";
-            console.log(selected);
+            //console.log(selected);
 
             RemoveOptions(selected);
         }
-        if (selectType === 'Code'){
+        if (selectType === 'Code') {
             selected.type = "Code";
-            console.log(selected);
+            //console.log(selected);
 
             RemoveOptions(selected);
         }
         selectedDep.changed();
 
         tabsHeight = $("#HTH_tabs").height() + 100 + "px";
-        console.log(tabsHeight + ": tabheight");
         tabsHeightDep.changed();
     },
     "click #HTH_DeleteQuest"(event){
-        console.log(this);
-        var index = lesson.questions.indexOf(this);
-        console.log("#" + index);
+        let index = lesson.questions.indexOf(this);
+        //console.log("#" + index);
 
-        if (index > -1){
+        if (index > -1) {
             lesson.questions.splice(index, 1);
         }
 
         lesson.questions.forEach(function (question) {
-            console.log(question);
-            console.log(question.num);
-            if (question.num > (index + 1)){
+            if (question.num > (index + 1)) {
                 question.num = question.num - 1;
-                console.log(question.num);
             }
         });
         selected = lesson.questions[0];
         selectedDep.changed();
-        if (index > lesson.questions.length - 1){
+        if (index > lesson.questions.length - 1) {
             selected = lesson.questions[index - 1];
         } else {
             selected = lesson.questions[index];
@@ -145,13 +151,12 @@ Template.homeTeacherHub.events({
         Lessons.update({_id: lesson._id}, {$set: {questions: lesson.questions}});
     },
     "click #HTH_AskQuest"(event, template) {
-        console.log(selected.num);
         saveQuestions(template);
         Lessons.update({_id: lesson._id}, {$set: {activequestion: selected.num}});
         Router.go("homeTeacherHubActiveQuestion", {token: lesson.token, activeNum: selected.num});
     },
     "click #HTH_RemoveAnswers"(event) {
-        Meteor.call("removeAnswers", {_id: lesson._id, num: selected.num}, (error)=> {
+        Meteor.call("removeAnswers", {_id: lesson._id, num: selected.num}, (error) => {
             if (error) {
                 console.log(error);
             } else {
@@ -163,12 +168,11 @@ Template.homeTeacherHub.events({
 
 Template.HTH_optInp.events({
     "click .HTH_OptionRemove"(){
-        console.log(this.option);
+        //console.log(this.option);
         let index = selected.options.indexOf(this.option);
-        console.log(index);
-        if (index > -1) {
-            selected.options.splice(index, 1);
-        }
+        //console.log(index);
+        if (index > -1) selected.options.splice(index, 1);
+
         selectedDep.changed();
     }
 });
@@ -185,21 +189,24 @@ Template.homeTeacherHub.helpers({
     tabsHeight: function () {
         tabsHeightDep.depend();
         return tabsHeight;
-    }
+    },
+    showEndLessonPopup: function () {
+        endButtonDep.depend();
+        return endButton;
+    },
 });
 
 Template.homeTeacherHub.rendered = function () {
     Meteor.subscribe('lessons');
     let token = Router.current().params.token;
-    //console.log(token);
-    Meteor.call("sendLesson", token, (error, response)=> {
+    Meteor.call("sendLesson", token, (error, response) => {
         if (error) {
             console.log(error);
         } else {
-            console.log("Response: " + JSON.stringify(response));
+            //console.log("Response: " + JSON.stringify(response));
             lesson = response;
 
-            if (!lesson.questions){
+            if (!lesson.questions) {
                 lesson.questions = [{
                     type: "Open",
                     question: "New question",
@@ -218,3 +225,45 @@ Template.homeTeacherHub.rendered = function () {
 };
 
 
+Template.navSignin.rendered = function () {
+    if (!endButton) {
+        endButton = false;
+        endButtonDep.changed();
+    }
+};
+
+Template.navSignin.events({
+    "click #endLessonBtn"(event){
+        if (!endButton) endButton = true;
+        endButtonDep.changed();
+    }
+});
+
+Template.popupEndLesson.events({
+    "click #HTH_endSave"(event){
+        hidePopUp();
+        clearDataVariables();
+        sAlert.success("Lesson saved!", {onRouteClose: false});
+        Router.go("homeTeacherDashboard");
+    },
+    "click #HTH_endDelete"(event){
+        if (!!lesson) {
+            Meteor.call("deleteLesson", {token: lesson.token}, (error, response) => {
+                if (error) {
+                    sAlert.error(error.message);
+                    hidePopUp();
+                }
+                else {
+                    hidePopUp();
+                    clearDataVariables();
+
+                    sAlert.success("Lesson removed!", {onRouteClose: false});
+                    Router.go("homeTeacherDashboard");
+                }
+            });
+        } else sAlert.error("U bricked it!");
+    },
+    "click #HTH_endCancel"(event){
+        hidePopUp();
+    }
+});
