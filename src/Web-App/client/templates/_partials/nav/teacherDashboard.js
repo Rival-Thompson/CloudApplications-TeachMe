@@ -11,3 +11,23 @@ Template.navTeacherDash.events({
 
     }
 });
+let wasDev = false;
+const wasDevDep = new Tracker.Dependency;
+Template.navTeacherDash.helpers({
+    developper: function () {
+        wasDevDep.depend();
+        return wasDev;
+
+    }
+});
+
+Template.navTeacherDash.rendered = function () {
+    console.log(Meteor.user());
+
+    if(Meteor.user().emails[0].address == "development@tma.be"){
+        wasDev = true;
+        console.log("USER IS DEVELOPER");
+        wasDevDep.changed();
+
+    }
+};

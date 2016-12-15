@@ -19,6 +19,11 @@
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
+                    {{#if developper}}
+                    <li>
+                        {{>loginButtons}}
+                    </li>
+                    {{/if}}
                     <li>
                         <button class="btn btn-blue1 navbar-btn " id="btnProfile">
                             <i class="fa fa-user"></i> <span id="2">Logout</span> <span id="1">{{user.profile.lastName}} {{user.profile.firstName}}</span>
