@@ -2,26 +2,26 @@
  * Created by rival on 11/10/2016.
  */
 Meteor.subscribe('user');
-var LetterArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
-var NumberArray = ["1","2","3","4","5","6","7","8","9","0"];
-var tokenRegex = new RegExp("^[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}$","i");
+const LetterArray = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+const NumberArray = ["1","2","3","4","5","6","7","8","9","0"];
+const tokenRegex = new RegExp("^[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}-[A-Z]{1}[0-9]{1}$","i");
 
 function GenerateRandomLetter() {
-  var num = Math.round(Math.random()* 25);
+  const num = Math.round(Math.random()* 25);
     return String(LetterArray[num]).toUpperCase();
 
 }
 
 function GenerateRandomNumber() {
-    var num = Math.round(Math.random()* 9);
+    const num = Math.round(Math.random()* 9);
     return NumberArray[num*1];
 
 }
 
 GenerateToken = function () {
     //console.log("gennerating token");
-    var token = GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber();
-    return token;
+    const token = GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber();
+     token;
 };
 
 _makeNewLesson = function (name,subject,anon = false ,token = null) {
@@ -36,7 +36,7 @@ _makeNewLesson = function (name,subject,anon = false ,token = null) {
         }
 
     }
-    var tokenInvallid = true;
+    let tokenInvallid = true;
     while(tokenInvallid){
         if(Lessons.findOne({token: token})){
             token = GenerateToken();
@@ -46,7 +46,7 @@ _makeNewLesson = function (name,subject,anon = false ,token = null) {
         }
     }
 
-    var les = {
+    const les = {
         teacher: Meteor.userId(),
         name: name,
         subject: subject,
@@ -58,7 +58,7 @@ _makeNewLesson = function (name,subject,anon = false ,token = null) {
         if(err){
             console.log(err.message);
         }else {
-            console.log(res.toString());
+            //console.log(res.toString());
             Router.go("/teacher/lesson/"+les.token);
         }
 
@@ -79,7 +79,7 @@ if (tokenRegex.test(GenerateToken())){
 Template.homeTeacherCreateLesson.events({
     "click #HTCL_btn_CreateNewLesson"(event,template){
         event.preventDefault();
-        console.log("lesson: "+ template.find('#HTCL_input_LessonName').value);
+        //console.log("lesson: "+ template.find('#HTCL_input_LessonName').value);
         _makeNewLesson(template.find('#HTCL_input_LessonName').value,template.find('#HTCL_input_LessonSubj').value,
             template.find('#HTCL_cb_Anon').checked)
     }

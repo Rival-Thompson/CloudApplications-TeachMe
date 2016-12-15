@@ -22,7 +22,7 @@ Template.navTeacherDash.helpers({
 });
 
 Template.navTeacherDash.rendered = function () {
-    console.log(Meteor.user());
+    //console.log(Meteor.user());
 
     if(Meteor.user().emails[0].address == "development@tma.be"){
         wasDev = true;

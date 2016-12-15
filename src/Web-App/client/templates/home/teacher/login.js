@@ -1,6 +1,13 @@
-Meteor.subscribe('user');
+
+import { Accounts } from 'meteor/accounts-base'
+
+Deps.autorun(function () {
+    Meteor.subscribe('user');
+    Meteor.subscribe('getUserData');
+});
+
 function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    const re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
@@ -32,8 +39,19 @@ Template.homeTeacherLogin.events({
 
     'click .btn-facebook':function(event){
         event.preventDefault();
-        Meteor.loginWithFacebook(function(err){
+        Meteor.loginWithFacebook({requestPermissions:['email', 'public_profile']},function(err){
             if(!err) {
+                const fb = Meteor.user().services.facebook;
+                //console.log(fb);
+                let data = Meteor.user().profile;
+                data.teacher = true;
+                data.firstName= fb.first_name;
+                data.lastName = fb.last_name;
+                data.gender = fb.gender;
+                Meteor.users.update(Meteor.userId(), {$set: {profile: data}});
+                if(Meteor.user().emails == undefined || Meteor.user().emails.length <= 0){
+                    Meteor.call("addEmailFromSocial",fb.email);
+                }
                 sAlert.success("Facebook login successful!",{onRouteClose: false});
                 Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");
@@ -43,8 +61,21 @@ Template.homeTeacherLogin.events({
 
     'click .btn-google':function(event){
         event.preventDefault();
-        Meteor.loginWithGoogle(function(err){
+        Meteor.loginWithGoogle({requestPermissions:['email', 'profile']},function(err){
             if(!err) {
+
+                const go = Meteor.user().services.google;
+                //console.log(go);
+                let data = Meteor.user().profile;
+                data.teacher = true;
+                data.firstName= go.given_name;
+                data.lastName = go.family_name;
+                data.gender = go.gender;
+                Meteor.users.update(Meteor.userId(), {$set: {profile: data}});
+                if(Meteor.user().emails == undefined || Meteor.user().emails.length <= 0){
+                    Meteor.call("addEmailFromSocial",go.email);
+                }
+
                 sAlert.success("Google login successful!",{onRouteClose: false});
                 Meteor.subscribe('lessons');
                 Router.go("homeTeacherDashboard");

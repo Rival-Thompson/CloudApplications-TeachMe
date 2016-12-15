@@ -1,12 +1,12 @@
 Meteor.subscribe('user');
 
 function validateEmail(email) {
-    var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
 }
 
 function validatePass(pasw) {
-    var re = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d).*$/;
+    let re = /^.*(?=.{6,})(?=.*[a-zA-Z])(?=.*\d).*$/;
     return re.test(pasw)
 }
 
@@ -17,18 +17,18 @@ Template.homeTeacherSignup.events({
         event.preventDefault();
 
 
-        var email = event.target.email.value;
-        var password = event.target.password.value;
-        var password2 = event.target.passwordRepeat.value;
-        var firstname = event.target.firstName.value;
-        var lastname = event.target.lastName.value;
-        var school = event.target.school.value;
+        const email = event.target.email.value;
+        const password = event.target.password.value;
+        const password2 = event.target.passwordRepeat.value;
+        const firstname = event.target.firstName.value;
+        const lastname = event.target.lastName.value;
+        const school = event.target.school.value;
          if (!!email && validateEmail(email)){
              if(!!password && validatePass(password) ){
                  if(!!password2 && password == password2){
                      if(!!firstname && firstname != ""){
                              if(!!lastname && lastname != ""){
-                                 let user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school,teacher: true}};
+                                 const user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school,teacher: true}};
                                  //console.log(user);
                                   Accounts.createUser(user, function (err) {
                                   if (!err) {

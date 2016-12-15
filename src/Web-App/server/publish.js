@@ -13,3 +13,6 @@ return Lessons.find({teacher:this.userId});
 Meteor.publish('user',function () {
     return this.user;
 });
+Meteor.publish("getUserData", function () {
+    return Meteor.users.find({_id: this.userId});
+});

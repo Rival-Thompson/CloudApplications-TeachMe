@@ -6,7 +6,7 @@ Meteor.subscribe("user");
 
 Template.homeTeacherDashboard.rendered = function () {
     setTimeout(function () {
-        console.log(Meteor.user());
+        //console.log(Meteor.user());
         if(Meteor.user() == null || Meteor.user() == undefined){
             sAlert.warning("Please login first!",{onRouteClose: false});
             Router.go("homeTeacherLogin");
