@@ -22,6 +22,12 @@ Router.route("/teacher/dashboard", {
 Router.route("/teacher/lesson/:token", {
     name: "homeTeacherHub"
 });
+Router.route("/lesson/token/:token", {
+    name: "ShowToken",
+    data: function () {
+        return {token : this.params.token}
+    }
+});
 
 Router.route("/student/token", {
     name: "homeStudentToken"

@@ -1,0 +1,24 @@
+@import "../colors";
+.teacherOverviewLesson{
+  hr{
+    margin: 0;
+    padding: 0;
+  }
+  a:hover, a:active{
+    span{
+      color: darken($color-teacher-Accent1,15);
+    }
+    color: inherit;
+    border: none;
+    text-decoration: none;
+    background: transparentize($color-teacher-Accent2,0.8) ;
+    border-radius: 0.5em;
+  }
+  a{
+   border: none;
+    color: inherit;
+    display: block;
+    padding: 1em;
+    font-weight: 700;
+  }
+}
