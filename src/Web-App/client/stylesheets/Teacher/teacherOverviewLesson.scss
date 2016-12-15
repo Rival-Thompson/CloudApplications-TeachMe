@@ -1,5 +1,8 @@
 @import "../colors";
 .teacherOverviewLesson{
+  overflow-y: scroll;
+  max-height: 87vh;
+
   hr{
     margin: 0;
     padding: 0;
