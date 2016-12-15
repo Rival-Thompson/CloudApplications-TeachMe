@@ -1,0 +1,64 @@
+.teacherSignup h1 {
+    font-size: 6em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
+}
+.teacherSignup h2 {
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
+}
+.teacherSignup h3
+{
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    padding: 0;
+    text-align: left;
+}
+.teacherSignup .block{
+    background: rgba(0,0,0,0.2);
+    padding: 5em;
+    border: 2em rgba(0,0,0,0.4);
+    box-shadow: 1.5em 1.5em 1.5em rgba(0,0,0,0.4);
+    border-radius: 1em;
+    display: inline-block;
+    max-width: 50em
+}
+.teacherSignup {
+    margin-top: 5vh;
+}
+.teacherSignup .button{
+    min-width: 112px;
+}
+@media only screen and (max-width: 730px){
+    .teacherSignup {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .teacherSignup .block{
+        padding: 0;
+        padding-top: 5em;
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .teacherSignup h1 {
+        font-size: 5em;
+    }
+}
+@media only screen and (max-width: 310px) {
+    .teacherSignup h1 {
+        font-size: 4em;
+    }
+}

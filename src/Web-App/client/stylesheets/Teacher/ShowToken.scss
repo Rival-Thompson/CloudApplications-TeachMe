@@ -1,0 +1,31 @@
+@import "../colors";
+.ShowToken{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  background-color: transparentize(darken($color-teacher-Accent1,30),0.1);
+
+  h2{
+    font-weight: bold;
+    font-size: 7em;
+    color: $color-teacher-Accent2;
+  }
+
+  .closeMe{
+    position: fixed;
+    color: darkgray;
+    font-size: 2em;
+    font-weight: bolder;
+    top: 1em;
+    right: 1em;
+    cursor: pointer;
+  }
+  .closeMe:hover{
+    color: whitesmoke;
+    cursor: pointer;
+  }
+
+}

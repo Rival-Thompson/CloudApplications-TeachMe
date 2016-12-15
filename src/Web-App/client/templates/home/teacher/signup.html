@@ -1,0 +1,57 @@
+<template name="homeTeacherSignup">
+    <div class="teacherSignup"><!--{{>navSignin}}-->
+        <div style="text-align: center; width: 100%">
+            <div class="block" >
+                <h1 class="banner text-blue2">Teach Me</h1>
+                <hr>
+                <form class="register-form">
+                    <div class="info container-fluid">
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="email-addon1" >
+                                <i class="fa fa-envelope" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="email-addon1" type="email" name="email" id="email" value="" placeholder="Email">
+                        </div>
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="pass-addon1" >
+                                <i class="fa fa-lock" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="pass-addon1" type="password" name="password" id="password" value="" placeholder="Password">
+                        </div>
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="pass-addon2" >
+                                <i class="fa fa-lock" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="pass-addon2" type="password" name="passwordRepeat" id="passwordRepeat" value="" placeholder="Repeat Password">
+                        </div>
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="name-addon1" >
+                                <i class="fa fa-user" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="name-addon1" type="text" name="firstName" id="firstName" value="" placeholder="First Name">
+                        </div>
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="name-addon2" >
+                                <i class="fa fa-user-secret" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="name-addon2" type="text" name="lastName" id="lastName" value="" placeholder="Last Name">
+                        </div>
+                        <div class="input-group">
+                            <span  class="input-group-addon" id="school-addon1" >
+                                <i class="fa fa-graduation-cap" aria-hidden="true" style="text-align: center; width: 1.2em"></i>
+                            </span>
+                            <input class="form-control" aria-hidden="true" aria-describedby="school-addon1" type="text" name="school" id="school" value="" placeholder="School Name">
+                        </div>
+                    </div>
+                    <div class="container-fluid">
+                        <button type="submit" class="btn btn-success col-sm-12 col-xs-12"><i class="fa fa-sign-in" aria-hidden="true"></i> Sign up</button> <!--event handelen-->
+                    </div>
+                    <hr>
+                    <div class="container-fluid">
+                        <a  href="{{pathFor "homeTeacherLogin"}}" class="btn-default btn buttonBack col-sm-12 col-xs-12"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</template>

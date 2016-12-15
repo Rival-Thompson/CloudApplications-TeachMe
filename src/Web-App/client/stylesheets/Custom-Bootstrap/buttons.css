@@ -1,0 +1,101 @@
+/*ronde knoppen*/
+.btn-round-lg{
+    border-radius: 22.5px;
+}
+.btn-round{
+    border-radius: 17px;
+}
+.btn-round-sm{
+    border-radius: 15px;
+}
+.btn-round-xs{
+    border-radius: 11px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+/*Groenne knop*/
+.btn-green1 {
+    background: #A5BE00;
+    border-color: #A5BE00;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+.btn-green1:hover {
+    background: #D1ED00;
+    border-color: #D1ED00;
+    color: white;
+}
+.btn-green1:active, .btn-green1:focus {
+    background: #D1ED00;
+    border-color: #D1ED00;
+    color: white;
+}
+
+/* Blauwe knop*/
+.btn-blue1 {
+    background: #078EC4;
+    border-color: #078EC4;
+    color: white;
+    font-size: 14px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.btn-blue1:hover {
+    background: #00B6FF;
+    border-color: #00B6FF;
+    color: white;
+}
+
+.btn-blue1:active, .btn-blue1:focus {
+    background: #00B6FF;
+    border-color: #00B6FF;
+    color: white;
+}
+
+/* Witte knop die groen word bij hover en klik */
+.btn-whiteToGreen {
+    background: white;
+    border-color: white;
+    color: black;
+    font-size: 14px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.btn-whiteToGreen:hover {
+    background: transparent;
+    border-color: #D1ED00;
+    color: #D1ED00;
+}
+
+.btn-whiteToGreen:active, .btn-whiteToGreen:focus {
+    background: #D1ED00;
+    border-color: #D1ED00;
+    color: white;
+}
+
+/* Witte knop die blauw word bij hover en klik */
+.btn-whiteToBlue {
+    background: white;
+    border-color: white;
+    color: black;
+    font-size: 14px;
+    border-radius: 4px;
+    border-width: 1px;
+}
+
+.btn-whiteToBlue:hover {
+    background: transparent;
+    border-color: #00B6FF;
+    color: #00B6FF;
+}
+
+.btn-whiteToBlue:active, .btn-whiteToBlue:focus {
+    background: #00B6FF;
+    border-color: #00B6FF;
+    color: white;
+}

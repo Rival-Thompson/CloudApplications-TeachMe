@@ -1,0 +1,37 @@
+<template name="homeStudentLesson">
+
+    <div class="HSL clearfix fullWidth studentSide">
+        {{>navStudent thisLesson=thisLesson}}
+    <div class="fullWidth clearfix" style="margin-top: 1%">
+        {{#if qstAnswered}}
+            {{>HSL_AnsweredQuestion}}
+        {{else}}
+            {{#if thisLesson.activequestion}}
+
+                {{#if zelfde selectedquestion.type "Open"}}
+                    {{>HSL_OpenQuestion qst=selectedquestion}}
+                {{else}}
+                    {{#if zelfde selectedquestion.type "MP"}}
+                        {{>HSL_MPQuestion qst=selectedquestion}}
+                    {{else}}
+                        {{#if zelfde selectedquestion.type "Code"}}
+                            {{>HSL_CodeQuestion qst=selectedquestion}}
+                        {{else}}
+                            <h3>Question </h3>
+                        {{/if}}
+                    {{/if}}
+                {{/if}}
+
+
+
+
+            {{else}}
+
+                {{>HSL_NoQuestion}}
+            {{/if}}
+        {{/if}}
+    </div>
+    </div>
+
+
+</template>

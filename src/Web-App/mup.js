@@ -3,7 +3,7 @@ module.exports = {
     one: {
       host: '54.71.205.83',
       username: 'ubuntu',
-      pem: './awsserver.pem'
+      pem: './awsservernew.pem'
       // password:
       // or leave blank for mup authenticate from ssh-agent
     }

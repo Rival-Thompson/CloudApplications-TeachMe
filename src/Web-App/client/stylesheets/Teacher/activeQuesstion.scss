@@ -1,0 +1,99 @@
+@import "../colors";
+
+.teacherHubActiveQuestion{
+@media (device-height:100vh){
+  nav{
+    display: none;
+  }
+}
+
+  .HTH_ActiveQuestion{
+    max-height: 80%;
+    width: 90%;
+    overflow: auto;
+    text-align: center;
+
+    h3{
+      font-size: 4em;
+      font-weight: bolder;
+      text-align: center;
+    }
+    h4{
+      font-size: 3em;
+      font-weight: bolder;
+      text-align: center;
+    }
+    #visualisation{
+      height: 61vh;
+      @media only screen and (max-height: 830px) {
+        height: 56vh;
+      }
+      @media only screen and (max-height: 730px) {
+        height: 51vh;
+      }
+    }
+
+    #HTHA-open-canvas{
+      overflow: hidden;
+      width: 100%;
+      height: 60vh;
+    }
+
+    #chartMP{
+      height: 60vh;
+      width: 100%;
+      @media only screen and (max-height: 830px) {
+        height: 55vh;
+      }
+      @media only screen and (max-height: 730px) {
+        height: 50vh;
+      }
+
+
+      .c3-chart-arc{
+        text{
+          font-size: 3em;
+          font-weight: 700;
+        }
+      }
+
+
+    }
+
+    #HTHA-Code{
+      overflow: hidden;
+      height: 60vh;
+      width: 100%;
+      @media only screen and (max-height: 830px) {
+        height: 55vh;
+      }
+      @media only screen and (max-height: 730px) {
+        height: 50vh;
+      }
+
+      .carousel-control{
+        width: 4%;
+        /*background: linear-gradient($color-teacher-Accent1,$color-teacher-Accent2);*/
+      }
+
+      .EDITOR{
+        display: inline-block;
+        width: 92%;
+        font-size: 1.3em;
+        height: 60vh;
+        @media only screen and (max-height: 830px) {
+          height: 55vh;
+        }
+        @media only screen and (max-height: 730px) {
+          height: 50vh;
+        }
+
+      }
+    }
+  }
+
+}
+.c3-legend-item{
+  font-size: 2em;
+  font-weight: 700;
+}

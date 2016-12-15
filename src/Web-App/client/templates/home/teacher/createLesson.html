@@ -1,0 +1,30 @@
+<template name="homeTeacherCreateLesson">
+    <div class="teacherCreateLesson">
+        <form class="lesson-form">
+            <div class="container-fluid">
+                <div class="headerLesson">
+                    <h2>New Lesson</h2>
+                </div>
+                <hr>
+                <div class="nameAndSubject">
+                    <div class="input-group col-xs-12">
+                        <label class="input-group-addon" for="lessonName">Lesson Name:</label>
+                        <input type="text" name="lessonName" class="form-control" autocomplete="off" id="HTCL_input_LessonName">
+                    </div>
+                    <div class="input-group col-xs-12 container-fluid">
+                        <label class="input-group-addon" for="lessonSubject">Lesson Subject:</label>
+                        <input type="text" name="lessonSubject" class="form-control" autocomplete="off" id="HTCL_input_LessonSubj">
+                    </div>
+                    <div class="checkbox" style="display: none;">
+                        <label class="checkbox-inline anonymity"><input type="checkbox" name="anonymity" value="yes" id="HTCL_cb_Anon">Student anonymity</label>
+                    </div>
+
+                </div>
+                <hr>
+                <div class="FooterLesson">
+                    <button type="button" id="HTCL_btn_CreateNewLesson" class="btn btn-success createNewLesson col-xs-12">Create lesson</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

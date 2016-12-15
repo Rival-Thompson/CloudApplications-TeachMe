@@ -1,0 +1,27 @@
+@import "../colors";
+
+.HTD{
+
+  .outerContainer{
+    padding-left: 3em;
+    padding-right: 3em;
+
+    .TeacherCreateLesson {
+      background: rgba(255,255,255,0.5);
+      border: solid transparentize(lighten($color-teacher-Accent1,50),0.5) 3px;
+      padding-bottom: 2em;
+      border-radius: 1em;
+    }
+    .TeacherOverviewLesson{
+      background: rgba(0,0,0,0.5);
+      min-height: 5em;
+      border: solid transparentize($color-teacher-Accent1,0.7) 3px;
+      padding-bottom: 2em;
+      border-radius: 1em;
+      max-height: 88vh;
+    }
+
+  }
+
+
+}

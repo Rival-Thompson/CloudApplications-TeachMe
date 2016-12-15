@@ -1,0 +1,41 @@
+<template name="homeTeacherHub">
+    <div class="teacherHub teacherSide">
+        {{>navTeacherHub thisLesson = thislesson}}
+        <div class="outerContainer">
+            <div class="HTH_Questions centered-hor container-fluid col-xs-12 col-sm-10 col-md-8 col-lg-6"  >
+                <div id="HTH_tabs" class="tabs col-xs-1">
+                    <ul class="nav nav-pills nav-stacked">
+                        {{#each question in thislesson.questions}}
+                            <li class="tab {{#if zelfde question.num selectedQuestion.num}}selectedtab{{/if}}">
+                                <a class="HTH_SelectQuest">{{question.num}}</a>
+                            </li>
+                        {{/each}}
+
+                        <li id="HTH_AddQuestion" class="tabPlus">
+                            <a>+</a>
+                        </li>
+
+                    </ul>
+                </div>
+                <div class="detail col-xs-11" style="min-height: {{tabsHeight}};" >
+                    {{#with selectedQuestion}}
+                        {{#if zelfde selectedQuestion.type "Open"}}
+                            {{>partialCreateOpenQuestions}}
+                        {{/if}}
+                        {{#if zelfde selectedQuestion.type "MP"}}
+                            {{>partialCreateMPQuestions}}
+                        {{/if}}
+                        {{#if zelfde selectedQuestion.type "Code"}}
+                            {{>partialCreateCodeQuestions}}
+                        {{/if}}
+                    {{/with}}
+                </div>
+                <div style="clear: both; width: 100%"></div>
+
+            </div>
+        </div>
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
+    </div>
+</template>

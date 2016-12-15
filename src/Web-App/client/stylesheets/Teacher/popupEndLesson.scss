@@ -1,0 +1,24 @@
+@import "../colors";
+
+.popupEndlesson{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  top: 0;
+  z-index: 100000;
+  background-color: transparentize(darken($color-teacher-Accent1,30),0.1);
+
+  .popup{
+    background: #bbbbbb;
+    padding: 2.5em 3em ;
+    border-radius: 0.5em;
+    border: solid $color-teacher-Accent2 1px;
+    box-shadow: darken($color-teacher-Accent2,30) 0.5em 0.5em 1.5em;
+    text-align: center;
+    h4{
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+  }
+}

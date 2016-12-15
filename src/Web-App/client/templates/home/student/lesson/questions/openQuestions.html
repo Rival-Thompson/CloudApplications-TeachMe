@@ -1,0 +1,29 @@
+<template name="HSL_OpenQuestion">
+    <div class="HSL-OpenQuestion">
+        <h3 class="question"> {{qst.question}}</h3>
+        <div style="overflow: auto; margin-top: 3em;">
+            <div style="width: 100%;display: block; text-align: center;">
+                <form action="" class="answerForm fullWidth">
+                    <textarea id="HSL-Open-Input" class="HSL-Open-Input " placeholder="Fill in your answer here..."></textarea>
+                </form>
+            </div>
+            <script>
+                $(document).ready(function () {
+                    $("#HSL-Open-Input").niceScroll({
+                        cursorcolor: "#D1ED00",
+                        autohidemode: "leave",
+                        cursoropacitymin: 0.2,
+                        cursorborder: "1px solid #A5BE00"
+                    });
+                })
+            </script>
+
+        </div>
+        {{>HSl_Rating}}
+        <div style="text-align: center; width: 100%">
+            <button type="button" id="HSL_SaveOpenAnswer" class="button btn btn-green1">Submit</button>
+        </div>
+    </div>
+
+
+</template>

@@ -1,0 +1,20 @@
+<template name="homeTeacherDashboard">
+    <div class="HTD teacherSide ">
+        {{>navTeacherDash user = user}}
+        <div class="outerContainer">
+            <div class="TeacherCreateLesson col-md-5 pull-right  col-sm-12 col-xs-12">
+                {{>homeTeacherCreateLesson}}
+            </div>
+            <div class="col-md-1 col-sm-12 pull-right col-xs-12">
+                <hr>
+            </div>
+            <div class="TeacherOverviewLesson col-md-6 col-sm-12 col-xs-12">
+                {{>homeTeacherOverviewLesson}}
+            </div>
+
+
+        </div>
+
+    </div>
+
+</template>

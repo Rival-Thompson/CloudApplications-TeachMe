@@ -1,0 +1,23 @@
+<template name="homeTeacherOverviewLesson">
+    <div class="teacherOverviewLesson">
+        <h2>Previous lessons</h2>
+        {{#each lesson in thisLessons}}
+            <hr>
+            <a class="fullWidth" href="{{pathFor "homeTeacherHub" token=lesson.token}}">
+                <div class="fullWidth">
+                    <p><span class="text-blue2">Lesson: </span>{{lesson.name}}</p>
+                </div>
+                <div class="fullWidth">
+                    <p><span class="text-blue2">Subject: </span>{{lesson.subject}}</p>
+                </div>
+
+            </a>
+        {{/each}}
+        <hr>
+    </div>
+    <script>
+        $(document).ready(function () {
+            $(".teacherOverviewLesson").niceScroll();
+        })
+    </script>
+</template>

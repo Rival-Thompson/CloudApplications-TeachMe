@@ -1,0 +1,65 @@
+.studentToken h1 {
+    font-size: 6em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
+}
+.studentToken h2 {
+    font-size: 2.5em;
+    font-weight: 500;
+    margin-top: 0;
+    padding: 0;
+}
+.studentToken h3
+{
+    font-size: 1.8em;
+    font-weight: 500;
+    margin-top: 0;
+    margin-bottom: 0.5em;
+    padding: 0;
+    text-align: left;
+}
+.studentToken .block{
+    background: rgba(0,0,0,0.2);
+    padding: 5em;
+    border: 2em rgba(0,0,0,0.4);
+    box-shadow: 1.5em 1.5em 1.5em rgba(0,0,0,0.4);
+    border-radius: 1em;
+    display: inline-block;
+    max-width: 50em
+}
+.studentToken {
+    margin-top: 5em;
+}
+.studentToken .button{
+    min-width: 112px;
+}
+
+@media only screen and (max-width: 730px){
+    .studentToken {
+        margin-top: 0;
+        text-align: center;
+    }
+
+    .studentToken .block{
+        padding: 0;
+        padding-top: 5%;
+        display: inline-block;
+        width: 100%;
+        max-width: 100%;
+        min-height: 100vh;
+        border: none;
+        box-shadow: none;
+        border-radius: 0;
+    }
+}
+@media only screen and (max-width: 400px) {
+    .studentToken h1 {
+        font-size: 5em;
+    }
+}
+@media only screen and (max-width: 310px) {
+    .studentToken h1 {
+        font-size: 4em;
+    }
+}

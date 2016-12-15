@@ -1,0 +1,28 @@
+<template name="homeTeacherHubActiveQuestion">
+    <div class="teacherHubActiveQuestion teacherSide" style="height: 100%;">
+        {{>navTeacherActiveLesson thisLesson = thisLesson}}
+
+        <div class="outerContainer">
+            <div class="HTH_ActiveQuestion centered">
+                <h3>
+                    {{thisActiveQuestion.question}}
+                </h3>
+                <div id="visualisation" >
+                    {{#if zelfde thisActiveQuestion.type "Open"}}
+                        {{>HTHAOpenQuest}}
+                    {{/if}}
+                    {{#if zelfde thisActiveQuestion.type "MP"}}
+                        {{>HTHAMPQuest}}
+                    {{/if}}
+                    {{#if zelfde thisActiveQuestion.type "Code"}}
+                        {{>HTHACodeQuest thisActiveQuestion=thisActiveQuestion}}
+                    {{/if}}
+                </div>
+                <h4>Average rating: <b>{{getRating}}</b></h4>
+            </div>
+        </div>
+        {{#if showEndLessonPopup}}
+            {{>popupEndLesson}}
+        {{/if}}
+    </div>
+</template>
