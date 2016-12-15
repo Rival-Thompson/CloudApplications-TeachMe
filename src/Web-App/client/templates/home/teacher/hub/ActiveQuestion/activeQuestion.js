@@ -5,15 +5,15 @@ let answers = [];
 let aantalPerOption = [];
 let chartData = [];
 let tokenActive = null;
-let currentActiveLesson;
 let wordcloudDiv;
 let chartDiv;
 let ratingDep = new Tracker.Dependency;
 let rating;
 let qstDep = new Tracker.Dependency;
 let qstActive;
-let endButton = false;
-let endButtonDep = new Tracker.Dependency;
+
+endButton = false;
+endButtonDep = new Tracker.Dependency;
 
 drawWordCloud = function (drawSpot) {
     //console.log("Draw this");
@@ -26,14 +26,14 @@ drawWordCloud = function (drawSpot) {
             fontWeight: "700",
             shuffle: true,
             color: function () {
-                const rand = Math.floor(Math.random()* 10);
-                if (rand >= 5){
-                    return  '#00B6FF'
-                }else{
+                const rand = Math.floor(Math.random() * 10);
+                if (rand >= 5) {
+                    return '#00B6FF'
+                } else {
                     return ' #078ec4'
                 }
             },
-            drawOutOfBound:true
+            drawOutOfBound: true
         });
     }
 };
@@ -70,20 +70,19 @@ updateData = function (activeqst) {
         let ratings = 0;
         if (activeqst.answers) {
             for (i = 0; i < activeqst.answers.length; i++) {
-                if( activeqst.answers[i].antw.length <= 60){
+                if (activeqst.answers[i].antw.length <= 60) {
                     answers[i] = [activeqst.answers[i].antw, 30];
-                }else if(activeqst.answers[i].antw.length <= 80){
+                } else if (activeqst.answers[i].antw.length <= 80) {
                     answers[i] = [activeqst.answers[i].antw, 25];
                 }
-                else if(activeqst.answers[i].antw.length <= 100){
+                else if (activeqst.answers[i].antw.length <= 100) {
                     answers[i] = [activeqst.answers[i].antw, 21];
                 }
-                else if(activeqst.answers[i].antw.length <= 120){
+                else if (activeqst.answers[i].antw.length <= 120) {
                     answers[i] = [activeqst.answers[i].antw, 17];
-                }else{
+                } else {
                     answers[i] = [activeqst.answers[i].antw, 14];
                 }
-
 
 
                 ratings += parseInt(activeqst.answers[i].rating);
@@ -130,33 +129,21 @@ updateData = function (activeqst) {
     qstDep.changed();
 };
 
-hidePopUp2 = function () {
-    console.log("hidingPopup")
-    endButton = false;
-    endButtonDep.changed();
-};
-
-clearDataVariables = function () {
-    // alle vorige variabelen  leegmaken
-    tokenActive = currentActiveLesson = qstActive = rating = wordcloudDiv = chartDiv = null;
-    answers = chartData = aantalPerOption = [];
-};
-
 Template.homeTeacherHubActiveQuestion.helpers({
     thisLesson: function () {
         tokenActive = null;
         if (tokenActive == null || tokenActive == undefined) {
             tokenActive = Router.current().params.token;
         }
-        currentActiveLesson = Lessons.findOne({token: tokenActive});
-        //console.log(currentActiveLesson);
-        if (!!currentActiveLesson) {
-            currentActiveLesson.questions.forEach(function (qst, index) {
-                if (qst.num == currentActiveLesson.activequestion) updateData(qst);
+        lesson = Lessons.findOne({token: tokenActive});
+        //console.log(lesson);
+        if (!!lesson) {
+            lesson.questions.forEach(function (qst, index) {
+                if (qst.num == lesson.activequestion) updateData(qst);
             });
         }
 
-        return currentActiveLesson;
+        return lesson;
     },
     thisActiveQuestion: function () {
         qstDep.depend();
@@ -210,39 +197,10 @@ Template.navTeacherActiveLesson.rendered = function () {
 Template.navTeacherActiveLesson.events({
     "click #endLessonBtn"(event){
         if (!endButton) endButton = true;
+        console.log("activated!");
         endButtonDep.changed();
     },
     "click #hubBtn"(event){
-        Router.go('homeTeacherHub',{token:currentActiveLesson.token});
-    }
-});
-
-Template.popupEndLesson.events({
-    "click #HTH_endSave"(event){
-        hidePopUp2();
-        clearDataVariables();
-        sAlert.success("Lesson saved!", {onRouteClose: false});
-        Router.go("homeTeacherDashboard");
-    },
-    "click #HTH_endDelete"(event){
-        if (!!currentActiveLesson) {
-            Meteor.call("deleteLesson", {token: currentActiveLesson.token}, (error, response) => {
-                if (error) {
-                    sAlert.error(error.message);
-                    hidePopUp2();
-                }
-                else {
-                    hidePopUp2();
-                    clearDataVariables();
-
-                    sAlert.success("Lesson removed!", {onRouteClose: false});
-                    Router.go("homeTeacherDashboard");
-                }
-            });
-        } else sAlert.error("U bricked it!");
-    },
-    "click #HTH_endCancel"(event){
-        console.log("canceliing");
-        hidePopUp2();
+        Router.go('homeTeacherHub', {token: lesson.token});
     }
 });

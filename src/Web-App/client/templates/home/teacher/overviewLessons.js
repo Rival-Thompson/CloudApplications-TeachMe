@@ -1,8 +1,10 @@
-/**
- * Created by rival on 10/12/2016.
- */
-Template.homeTeacherOverviewLesson.helpers({
+Meteor.subscribe('user');
 
+Template.homeTeacherOverviewLesson.helpers({
+    thisLessons: function () {
+        //console.log(Lessons.find({teacher: Meteor.userId()}));
+        return Lessons.find({teacher: Meteor.userId()});
+    }
 });
 
 Template.homeTeacherOverviewLesson.events({

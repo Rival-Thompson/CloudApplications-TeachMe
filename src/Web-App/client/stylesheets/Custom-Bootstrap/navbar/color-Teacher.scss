@@ -1,12 +1,24 @@
 @import "../../colors";
 
 $bgColor: #303030;
-$highlightColor: $color-student-Accent1;
+$highlightColor: $color-teacher-Accent1;
 $mainTextColor: white;
 $hoverColor: $color-teacher-Accent2;
 
 
 .teacherSide {
+  .navbar .navbar-collapse {
+    text-align: center;
+  }
+  .token{
+    margin-left: auto;
+    margin-right: auto;
+    display: inline;
+    li{
+      float: none;
+    }
+  }
+
   .navbar-default {
     background-color: $bgColor;
     border-color: $bgColor;

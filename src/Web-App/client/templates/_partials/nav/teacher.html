@@ -18,6 +18,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left token">
+                    <li class="navbar-text" onclick="var tk = '{{thisLesson.token}}'; Router.go('ShowToken',{token:tk})"
+                    ><p >Token: {{thisLesson.token}}</p></li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
                         <li><button id="endLessonBtn" class="btn btn-danger navbar-btn">EndLesson</button></li>
@@ -48,6 +53,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
 
             <div class="collapse navbar-collapse" id="navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-left token">
+                    <li class="navbar-text" onclick="var tk = '{{thisLesson.token}}'; Router.go('ShowToken',{token:tk})"
+                    ><p >Token: {{thisLesson.token}}</p></li>
+                </ul>
+
                 <ul class="nav navbar-nav navbar-right">
                     {{#if thisLesson}}
                         <li><button id="hubBtn" class="btn btn-info navbar-btn" href="{{pathFor "homeTeacherHub" token=thisLesson.token}}" onclick="/*history.back();*/">Back to hub</button></li>
