@@ -1,7 +1,5 @@
 Meteor.subscribe('user');
 
-
-let lesson = null;
 let lessonDep = new Tracker.Dependency;
 let selected = null;
 let selectedDep = new Tracker.Dependency;
@@ -9,8 +7,8 @@ let selectedDep = new Tracker.Dependency;
 let tabsHeight = $("#HTH_tabs").height() + 50 + "px";
 let tabsHeightDep = new Tracker.Dependency;
 
-let endButton = false;
-let endButtonDep = new Tracker.Dependency;
+endButton = false;
+endButtonDep = new Tracker.Dependency;
 
 
 Template.registerHelper('zelfde', (a, b) => {
@@ -50,14 +48,23 @@ RemoveOptions = function (selected) {
 };
 
 hidePopUp = function () {
-    endButton = false;
+    let url = Router.current().url;
+    let token = Router.current().params.token;
+    let activeNum = Router.current().params.activeNum;
+    if (url.includes(token + "/" + activeNum)) {
+        console.log("we zitten in activeqst");
+        endButton = false;
+    } else {
+        console.log("we zitten in show");
+        endButton = false;
+    }
     endButtonDep.changed();
 };
 
 clearDataVariables = function () {
     // alle vorige variabelen  leegmaken
     lesson = selected = null;
-    tokenActive = currentActiveLesson = qstActive = rating = wordcloudDiv = chartDiv = null;
+    tokenActive = qstActive = rating = wordcloudDiv = chartDiv = null;
     answers = chartData = aantalPerOption = [];
 };
 

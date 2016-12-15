@@ -28,16 +28,17 @@ Template.homeTeacherSignup.events({
                  if(!!password2 && password == password2){
                      if(!!firstname && firstname != ""){
                              if(!!lastname && lastname != ""){
-                                 var user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school,teacher: true}};
+                                 let user = {email: email, password: password, profile: {firstName: firstname, lastName: lastname, school: school,teacher: true}};
                                  //console.log(user);
                                   Accounts.createUser(user, function (err) {
                                   if (!err) {
-                                  alert("sign up successful!");
-                                  Router.go("homeTeacherLogin")
+                                  sAlert.success("Sign up successful!",{onRouteClose: false});
+                                  Router.go("homeTeacherDashboard")
 
 
                                   }else{
                                   console.log(err.message);
+                                  sAlert.warning(err.message);
                                   }
                                   });
                              }else{
