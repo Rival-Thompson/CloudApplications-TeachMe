@@ -1,5 +1,10 @@
 <template name="homeTeacherOverviewLesson">
     <div class="teacherOverviewLesson">
-
+        {{#each lesson in thisLessons}}
+            <div>
+                <p>{{lesson.name}}</p>
+                <p>{{lesson.subject}}</p>
+            </div>
+        {{/each}}
     </div>
 </template>
