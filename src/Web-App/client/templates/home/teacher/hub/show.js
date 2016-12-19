@@ -249,8 +249,9 @@ Template.navTeacherHub.events({
 Template.popupEndLesson.events({
     "click #HTH_endSave"(event){
         hidePopUp();
-        clearDataVariables();
+        Lessons.update({_id: lesson._id}, {$set: {activequestion: null}});
         sAlert.success("Lesson saved!", {onRouteClose: false});
+        clearDataVariables();
         Router.go("homeTeacherDashboard");
     },
     "click #HTH_endDelete"(event){
