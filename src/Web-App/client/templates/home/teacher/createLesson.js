@@ -21,7 +21,7 @@ function GenerateRandomNumber() {
 GenerateToken = function () {
     //console.log("gennerating token");
     const token = GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber()+"-"+GenerateRandomLetter()+GenerateRandomNumber();
-     return token;
+    return token;
 };
 
 _makeNewLesson = function (name,subject,anon = false ,token = null) {
