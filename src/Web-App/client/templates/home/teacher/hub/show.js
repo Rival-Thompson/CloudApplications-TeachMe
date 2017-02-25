@@ -21,7 +21,8 @@ Template.registerHelper('not', (a) => {
 
 saveQuestions = function (template) {
     if (selected) {
-        selected.question = template.find('#HTH_InputQuestion').value;
+        selected.question = template.find('#HTH_InputQuestion').value.replace(/(\n|\r\n)/g, "<br>");
+        selected.question = selected.question.replace("<br><br>","<br>");
         selected.type = template.find('#HTH_SelectType').value;
         //console.log(selected);
         if (selected.type === "MP") {
@@ -191,6 +192,7 @@ Template.homeTeacherHub.helpers({
     },
     selectedQuestion: function () {
         selectedDep.depend();
+        selected.question = selected.question.replace("<br>","\r\n")
         return selected;
     },
     tabsHeight: function () {
