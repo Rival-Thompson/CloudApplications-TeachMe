@@ -40,6 +40,8 @@ Template.homeStudentLesson.helpers({
 
             const qst = ReactiveMethod.call('getQuestion', {token: thislesson.token, num: thislesson.activequestion});
             if (editor2 && qst.type == "Code") editor2.setValue(qst.QuestExample);
+
+            qst.question = new Handlebars.SafeString(qst.question);
             return qst
         }
 

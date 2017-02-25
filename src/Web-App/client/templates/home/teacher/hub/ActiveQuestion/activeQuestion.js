@@ -153,6 +153,7 @@ Template.homeTeacherHubActiveQuestion.helpers({
 
         else if (!!chartDiv && qstActive.type == "MP")
             drawChart(chartDiv);
+            qstActive.question = new Handlebars.SafeString(qstActive.question);
 
         return qstActive;
     },
